@@ -1,8 +1,5 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false,
-  "rewrites": [
-    { "source": "/api/sms-consent", "destination": "/api/sms-consent.js" }
-  ]
+  "trailingSlash": false
 }
 
