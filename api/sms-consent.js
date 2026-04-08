@@ -9,6 +9,8 @@ module.exports = async function handler(req, res) {
   if (req.method === "OPTIONS") return res.status(200).end();
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
+  if (!MASTER_TOKEN) return res.status(500).json({ error: "Server configuration error: AIRTABLE_TOKEN not set" });
+
   const { name, phone } = req.body || {};
   if (!name || !phone) return res.status(400).json({ error: "Name and phone are required" });
   if (!/^\+1\d{10}$/.test(phone)) return res.status(400).json({ error: "Invalid phone format" });
