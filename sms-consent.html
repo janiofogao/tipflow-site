@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SMS Notifications — Tipflow</title>
-  <meta name="description" content="Subscribe to receive real-time SMS updates about your cleaning service appointments." />
+  <title>SMS Consent — T Home Improvement LLC</title>
+  <meta name="description" content="SMS messaging consent and opt-out information for T Home Improvement LLC." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
@@ -17,8 +17,6 @@
       display: flex;
       flex-direction: column;
     }
-
-    /* NAV */
     nav {
       background: #fff;
       border-bottom: 1px solid #eaecf0;
@@ -33,28 +31,22 @@
       color: #0f3460;
       text-decoration: none;
     }
-
-    /* MAIN */
     main {
       flex: 1;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
       padding: 48px 20px;
     }
-
     .card {
       background: #fff;
       border-radius: 24px;
       padding: 48px 40px;
-      max-width: 480px;
+      max-width: 600px;
       width: 100%;
       box-shadow: 0 4px 40px rgba(0,0,0,0.08);
     }
-
-    /* Header */
     .card-header {
-      text-align: center;
       margin-bottom: 36px;
     }
     .badge {
@@ -78,175 +70,83 @@
     }
     .card-header h1 {
       font-family: 'Syne', sans-serif;
-      font-size: 26px;
+      font-size: 28px;
       font-weight: 800;
       color: #0f3460;
       letter-spacing: -0.5px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       line-height: 1.2;
     }
     .card-header p {
       font-size: 15px;
       color: #6b7280;
       line-height: 1.6;
-      font-weight: 400;
     }
-
-    /* Form */
-    .form-group {
-      margin-bottom: 18px;
+    .section {
+      border-top: 1px solid #eaecf0;
+      padding: 24px 0;
     }
-    label {
-      display: block;
-      font-size: 13px;
-      font-weight: 600;
-      color: #374151;
-      margin-bottom: 6px;
+    .section:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #9ca3af;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
     }
-    input[type="text"],
-    input[type="tel"] {
-      width: 100%;
-      border: 1.5px solid #e5e7eb;
-      border-radius: 12px;
-      padding: 13px 16px;
-      font-family: 'DM Sans', sans-serif;
+    .section-value {
       font-size: 15px;
       color: #1a1a2e;
-      outline: none;
-      transition: border-color 0.2s;
-      background: #fff;
+      font-weight: 500;
+      line-height: 1.6;
     }
-    input[type="text"]:focus,
-    input[type="tel"]:focus {
-      border-color: #00C48C;
-      box-shadow: 0 0 0 3px rgba(0,196,140,0.1);
+    .section-value a {
+      color: #0f3460;
+      text-decoration: none;
+      font-weight: 600;
     }
-    input::placeholder { color: #9ca3af; }
-
-    /* Checkbox */
-    .consent-group {
+    .section-value a:hover { text-decoration: underline; }
+    .tag-list {
       display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      background: #f0fdf9;
-      border: 1.5px solid rgba(0,196,140,0.2);
-      border-radius: 12px;
-      padding: 14px 16px;
-      margin-bottom: 24px;
-      cursor: pointer;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
     }
-    .consent-group input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
-      flex-shrink: 0;
-      margin-top: 2px;
-      accent-color: #00C48C;
-      cursor: pointer;
-    }
-    .consent-text {
+    .tag {
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      border-radius: 20px;
+      padding: 4px 14px;
       font-size: 13px;
+      color: #0369a1;
+      font-weight: 500;
+    }
+    .stop-box {
+      background: #f0fdf9;
+      border: 1.5px solid rgba(0,196,140,0.25);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 8px;
+      font-size: 14px;
       color: #374151;
       line-height: 1.65;
     }
-
-    /* Button */
-    .btn-submit {
-      width: 100%;
-      padding: 15px 0;
-      border-radius: 12px;
-      border: none;
-      background: #0f3460;
-      color: #fff;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-    .btn-submit:hover:not(:disabled) {
-      background: #0a2748;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 20px rgba(15,52,96,0.25);
-    }
-    .btn-submit:disabled {
-      opacity: 0.65;
-      cursor: not-allowed;
-    }
-
-    /* Error */
-    .error-msg {
-      display: none;
-      background: #fef2f2;
-      border: 1px solid #fecaca;
-      border-radius: 10px;
-      padding: 12px 16px;
-      font-size: 13px;
-      color: #dc2626;
-      margin-bottom: 16px;
-    }
-    .error-msg.visible { display: block; }
-
-    /* Success */
-    .success-screen {
-      display: none;
-      text-align: center;
-      padding: 20px 0;
-    }
-    .success-screen.visible { display: block; }
-    .success-icon {
-      width: 72px;
-      height: 72px;
-      background: rgba(0,196,140,0.1);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 36px;
-      margin: 0 auto 24px;
-    }
-    .success-screen h2 {
-      font-family: 'Syne', sans-serif;
-      font-size: 22px;
-      font-weight: 800;
-      color: #0f3460;
-      margin-bottom: 12px;
-    }
-    .success-screen p {
-      font-size: 15px;
-      color: #6b7280;
-      line-height: 1.7;
-      max-width: 320px;
-      margin: 0 auto;
-    }
-
-    /* Footer */
+    .stop-box strong { color: #0f3460; }
     footer {
       background: #fff;
       border-top: 1px solid #eaecf0;
       padding: 24px 20px;
       text-align: center;
     }
-    .footer-compliance {
+    .footer-text {
       font-size: 12px;
       color: #9ca3af;
       line-height: 1.8;
-      max-width: 480px;
-      margin: 0 auto;
     }
-    .footer-compliance a {
-      color: #0f3460;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    .footer-compliance a:hover { text-decoration: underline; }
-    .footer-divider { margin: 0 6px; }
-
     @media (max-width: 520px) {
       .card { padding: 32px 24px; border-radius: 20px; }
       .card-header h1 { font-size: 22px; }
@@ -262,125 +162,65 @@
 <main>
   <div class="card">
 
-    <!-- Form view -->
-    <div id="form-view">
-      <div class="card-header">
-        <div class="badge"><span class="badge-dot"></span> SMS Notifications</div>
-        <h1>Stay Updated with<br/>SMS Notifications</h1>
-        <p>Get real-time updates about your cleaning service appointments.</p>
-      </div>
-
-      <div class="error-msg" id="error-msg"></div>
-
-      <form id="consent-form" novalidate>
-        <div class="form-group">
-          <label for="name">Full Name</label>
-          <input type="text" id="name" name="name" placeholder="Ex: Sarah Johnson" required autocomplete="name" />
-        </div>
-
-        <div class="form-group">
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" name="phone" placeholder="+1 (XXX) XXX-XXXX" required autocomplete="tel" />
-        </div>
-
-        <label class="consent-group" for="consent">
-          <input type="checkbox" id="consent" name="consent" required />
-          <span class="consent-text">
-            I agree to receive automated SMS messages from my cleaning service provider via Tipflow.
-            Message and data rates may apply. Reply <strong>STOP</strong> to unsubscribe at any time.
-          </span>
-        </label>
-
-        <button type="submit" class="btn-submit" id="submit-btn">
-          ✅ Subscribe to Updates
-        </button>
-      </form>
+    <div class="card-header">
+      <div class="badge"><span class="badge-dot"></span> SMS Messaging</div>
+      <h1>SMS Consent</h1>
+      <p>Information about how T Home Improvement LLC uses SMS messaging to communicate with clients.</p>
     </div>
 
-    <!-- Success view -->
-    <div class="success-screen" id="success-view">
-      <div class="success-icon">✅</div>
-      <h2>You're subscribed!</h2>
-      <p>You'll receive SMS updates about your cleaning appointments. You can reply <strong>STOP</strong> at any time to unsubscribe.</p>
+    <div class="section">
+      <div class="section-label">Company</div>
+      <div class="section-value">T Home Improvement LLC</div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Service</div>
+      <div class="section-value">Cleaning service appointment notifications</div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">How Consent Is Obtained</div>
+      <div class="section-value">Verbally at time of booking. Clients agree to receive SMS notifications when scheduling their cleaning service appointment.</div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Types of Messages</div>
+      <div class="tag-list">
+        <span class="tag">🚗 On-my-way alerts</span>
+        <span class="tag">🏠 Arrival confirmations</span>
+        <span class="tag">✅ Job completion notifications</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Message Frequency</div>
+      <div class="section-value">Messages are sent only when a service is scheduled or actively in progress. Frequency varies based on your appointment schedule.</div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">How to Opt Out</div>
+      <div class="stop-box">
+        Reply <strong>STOP</strong> to any message to unsubscribe immediately. You will receive no further SMS messages after opting out. Message and data rates may apply.
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-label">Contact</div>
+      <div class="section-value">
+        Email: <a href="mailto:contact@thomeimprovement.org">contact@thomeimprovement.org</a><br/>
+        SMS: <a href="tel:+17045205822">+1 (704) 520-5822</a>
+      </div>
     </div>
 
   </div>
 </main>
 
 <footer>
-  <div class="footer-compliance">
-    Message frequency varies. Msg &amp; data rates may apply.<br/>
-    Reply <strong>STOP</strong> to unsubscribe. Reply <strong>HELP</strong> for help.<br/>
-    <a href="/privacy-policy">Privacy Policy</a>
-    <span class="footer-divider">·</span>
-    <a href="/terms">Terms of Service</a>
+  <div class="footer-text">
+    T Home Improvement LLC &nbsp;·&nbsp; Message &amp; data rates may apply.<br/>
+    Reply <strong>STOP</strong> to unsubscribe &nbsp;·&nbsp; Reply <strong>HELP</strong> for help.
   </div>
 </footer>
 
-<script>
-  const form = document.getElementById('consent-form');
-  const submitBtn = document.getElementById('submit-btn');
-  const errorMsg = document.getElementById('error-msg');
-  const formView = document.getElementById('form-view');
-  const successView = document.getElementById('success-view');
-
-  function showError(msg) {
-    errorMsg.textContent = msg;
-    errorMsg.classList.add('visible');
-  }
-
-  function clearError() {
-    errorMsg.classList.remove('visible');
-  }
-
-  function normalizePhone(raw) {
-    const digits = raw.replace(/\D/g, '');
-    if (digits.length === 10) return '+1' + digits;
-    if (digits.length === 11 && digits[0] === '1') return '+' + digits;
-    return '+' + digits;
-  }
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    clearError();
-
-    const name = document.getElementById('name').value.trim();
-    const phoneRaw = document.getElementById('phone').value.trim();
-    const consent = document.getElementById('consent').checked;
-
-    if (!name) return showError('Please enter your full name.');
-    if (!phoneRaw) return showError('Please enter your phone number.');
-
-    const phone = normalizePhone(phoneRaw);
-    if (!/^\+1\d{10}$/.test(phone)) {
-      return showError('Please enter a valid US phone number (e.g. +1 704 343 1460).');
-    }
-    if (!consent) return showError('Please check the consent box to continue.');
-
-    submitBtn.disabled = true;
-    submitBtn.textContent = '⏳ Saving...';
-
-    try {
-      const res = await fetch('/api/sms-consent', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, phone }),
-      });
-      const data = await res.json();
-      if (!res.ok || !data.success) {
-        showError(data.error || 'Something went wrong. Please try again.');
-        submitBtn.disabled = false;
-        submitBtn.textContent = '✅ Subscribe to Updates';
-        return;
-      }
-      formView.style.display = 'none';
-      successView.classList.add('visible');
-    } catch (err) {
-      showError('Network error. Please check your connection and try again.');
-      submitBtn.disabled = false;
-      submitBtn.textContent = '✅ Subscribe to Updates';
-    }
-  });
-</script>
 </body>
 </html>
