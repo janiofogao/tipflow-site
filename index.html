@@ -139,13 +139,13 @@
       box-shadow: 0 32px 80px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.04);
       overflow: hidden; flex-shrink: 0; position: relative;
     }
-    .phone-frame img { display: block; width: 100%; height: auto; }
+    .phone-frame img { display: block; width: 100%; height: auto; image-rendering: -webkit-optimize-contrast; }
     .phone-frame .phone-notch {
       position: absolute; top: 0; left: 50%; transform: translateX(-50%);
       width: 100px; height: 28px; background: #000; border-radius: 0 0 18px 18px; z-index: 2;
     }
-    .phone-main { width: 240px; z-index: 2; }
-    .phone-side { width: 200px; z-index: 1; opacity: .85; }
+    .phone-main { width: 300px; z-index: 2; }
+    .phone-side { width: 250px; z-index: 1; opacity: .85; }
     .phone-left { transform: rotate(-6deg) translateX(40px); }
     .phone-right { transform: rotate(6deg) translateX(-40px); }
     .phone-placeholder {
@@ -193,9 +193,9 @@
     .feature-phone {
       background: #111827; border-radius: 36px; border: 3px solid rgba(255,255,255,.09);
       box-shadow: 0 24px 64px rgba(0,0,0,.5); overflow: hidden;
-      position: relative; max-width: 280px; margin: 0 auto;
+      position: relative; max-width: 340px; margin: 0 auto;
     }
-    .feature-phone img { width: 100%; height: auto; display: block; }
+    .feature-phone img { width: 100%; height: auto; display: block; image-rendering: -webkit-optimize-contrast; }
     .feature-phone .phone-notch {
       position: absolute; top: 0; left: 50%; transform: translateX(-50%);
       width: 90px; height: 26px; background: #000; border-radius: 0 0 16px 16px; z-index: 2;
@@ -400,7 +400,7 @@
       <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label" data-i18n="s1">Mobile</div></div>
       <div class="stat-item"><div class="stat-num">3</div><div class="stat-label" data-i18n="s2">Idiomas</div></div>
       <div class="stat-item"><div class="stat-num">30</div><div class="stat-label" data-i18n="s3">Dias grátis</div></div>
-      <div class="stat-item"><div class="stat-num">🇧🇷</div><div class="stat-label" data-i18n="s4">Suporte em português</div></div>
+      <div class="stat-item"><div class="stat-num" style="font-size:22px;letter-spacing:2px">🇧🇷🇺🇸🇪🇸</div><div class="stat-label" data-i18n="s4">PT · EN · ES</div></div>
     </div>
   </div>
 
@@ -657,7 +657,7 @@ const LANGS = {
     b3:'Mensagens automáticas para clientes', b4:'Controle financeiro completo',
     b5:'Assistente de IA que trabalha por você',
     heroCta:'Começar grátis — 30 dias sem cartão', heroDemo:'Ver demonstração',
-    s1:'Mobile', s2:'Idiomas', s3:'Dias grátis', s4:'Suporte em português',
+    s1:'Mobile', s2:'Idiomas', s3:'Dias grátis', s4:'PT · EN · ES',
     f1tag:'Agenda', f1title:'Agende e organize tudo em segundos',
     f1desc:'Visualize sua semana, atribua serviços para sua equipe e receba notificações automáticas.',
     f1b1:'Visualização semanal', f1b2:'Atribua para sua equipe', f1b3:'Serviços recorrentes', f1b4:'Notificações automáticas',
@@ -694,7 +694,7 @@ const LANGS = {
     b3:'Automatic client messages', b4:'Full financial control',
     b5:'AI assistant that works for you',
     heroCta:'Start free — 30 days, no card', heroDemo:'See demo',
-    s1:'Mobile', s2:'Languages', s3:'Free days', s4:'Support in your language',
+    s1:'Mobile', s2:'Languages', s3:'Free days', s4:'PT · EN · ES',
     f1tag:'Schedule', f1title:'Schedule and organize in seconds',
     f1desc:'View your week, assign jobs to your team and receive automatic notifications.',
     f1b1:'Weekly view', f1b2:'Assign to your team', f1b3:'Recurring services', f1b4:'Automatic notifications',
@@ -731,7 +731,7 @@ const LANGS = {
     b3:'Mensajes automáticos a clientes', b4:'Control financiero completo',
     b5:'Asistente IA que trabaja por ti',
     heroCta:'Comenzar gratis — 30 días sin tarjeta', heroDemo:'Ver demo',
-    s1:'Móvil', s2:'Idiomas', s3:'Días gratis', s4:'Soporte en español',
+    s1:'Móvil', s2:'Idiomas', s3:'Días gratis', s4:'PT · EN · ES',
     f1tag:'Agenda', f1title:'Agenda y organiza todo en segundos',
     f1desc:'Visualiza tu semana, asigna servicios a tu equipo y recibe notificaciones automáticas.',
     f1b1:'Vista semanal', f1b2:'Asigna a tu equipo', f1b3:'Servicios recurrentes', f1b4:'Notificaciones automáticas',
