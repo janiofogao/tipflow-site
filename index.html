@@ -139,17 +139,17 @@
       box-shadow: 0 32px 80px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.04);
       overflow: hidden; flex-shrink: 0; position: relative;
     }
-    .phone-frame img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+    .phone-frame img { display: block; width: 100%; height: auto; }
     .phone-frame .phone-notch {
       position: absolute; top: 0; left: 50%; transform: translateX(-50%);
       width: 100px; height: 28px; background: #000; border-radius: 0 0 18px 18px; z-index: 2;
     }
-    .phone-main { width: 240px; height: 490px; z-index: 2; }
-    .phone-side { width: 200px; height: 430px; z-index: 1; opacity: .85; }
+    .phone-main { width: 240px; z-index: 2; }
+    .phone-side { width: 200px; z-index: 1; opacity: .85; }
     .phone-left { transform: rotate(-6deg) translateX(40px); }
     .phone-right { transform: rotate(6deg) translateX(-40px); }
     .phone-placeholder {
-      width: 100%; height: 100%;
+      width: 100%; height: 460px;
       background: linear-gradient(160deg, #1f2937 0%, #111827 100%);
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       gap: 8px; color: rgba(255,255,255,.25); font-size: 13px; font-weight: 600;
@@ -157,7 +157,7 @@
     .phone-placeholder .ph-icon { font-size: 28px; }
     @media (max-width: 700px) {
       .phone-side { display: none; }
-      .phone-main { width: 220px; height: 450px; transform: none !important; }
+      .phone-main { width: 220px; transform: none !important; }
       .phone-left, .phone-right { display: none; }
     }
 
@@ -193,9 +193,9 @@
     .feature-phone {
       background: #111827; border-radius: 36px; border: 3px solid rgba(255,255,255,.09);
       box-shadow: 0 24px 64px rgba(0,0,0,.5); overflow: hidden;
-      aspect-ratio: 9/19; max-height: 540px; position: relative;
+      position: relative; max-width: 280px; margin: 0 auto;
     }
-    .feature-phone img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+    .feature-phone img { width: 100%; height: auto; display: block; }
     .feature-phone .phone-notch {
       position: absolute; top: 0; left: 50%; transform: translateX(-50%);
       width: 90px; height: 26px; background: #000; border-radius: 0 0 16px 16px; z-index: 2;
