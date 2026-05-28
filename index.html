@@ -55,6 +55,8 @@
 
     /* fade-in on scroll */
     .fade { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+    @keyframes blink-arrow { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+    .cta-hint { font-size: 0.85rem; color: #10B981; text-align: center; margin-bottom: 8px; animation: blink-arrow 1s ease-in-out infinite; }
     .fade.visible { opacity: 1; transform: translateY(0); }
 
     /* ── NAV ── */
@@ -368,6 +370,7 @@
         <div class="hero-bullet">✅ <span data-i18n="b4">Controle financeiro completo</span></div>
         <div class="hero-bullet">✅ <span data-i18n="b5">Assistente de IA que trabalha por você</span></div>
       </div>
+      <div class="cta-hint fade" style="transition-delay:.28s" data-i18n="heroCtaHint">▼ Clique aqui para começar</div>
       <div class="hero-btns fade" style="transition-delay:.3s">
         <a href="https://tipflow.business/?tab=signup" class="btn-green-lg" data-i18n="heroCta">Começar grátis — 30 dias sem cartão</a>
         <a href="#features" class="btn-outline" data-i18n="heroDemo">Ver demonstração</a>
@@ -656,7 +659,7 @@ const LANGS = {
     b1:'Agende serviços em segundos', b2:'Acompanhe sua equipe em tempo real',
     b3:'Mensagens automáticas para clientes', b4:'Controle financeiro completo',
     b5:'Assistente de IA que trabalha por você',
-    heroCta:'Começar grátis — 30 dias sem cartão', heroDemo:'Ver demonstração',
+    heroCta:'Começar grátis — 30 dias sem cartão', heroDemo:'Ver demonstração', heroCtaHint:'▼ Clique aqui para começar',
     s1:'Mobile', s2:'Idiomas', s3:'Dias grátis', s4:'PT · EN · ES',
     f1tag:'Agenda', f1title:'Agende e organize tudo em segundos',
     f1desc:'Visualize sua semana, atribua serviços para sua equipe e receba notificações automáticas.',
@@ -693,7 +696,7 @@ const LANGS = {
     b1:'Schedule jobs in seconds', b2:'Track your team in real time',
     b3:'Automatic client messages', b4:'Full financial control',
     b5:'AI assistant that works for you',
-    heroCta:'Start free — 30 days, no card', heroDemo:'See demo',
+    heroCta:'Start free — 30 days, no card', heroDemo:'See demo', heroCtaHint:'▼ Click here to get started',
     s1:'Mobile', s2:'Languages', s3:'Free days', s4:'PT · EN · ES',
     f1tag:'Schedule', f1title:'Schedule and organize in seconds',
     f1desc:'View your week, assign jobs to your team and receive automatic notifications.',
@@ -730,7 +733,7 @@ const LANGS = {
     b1:'Agenda servicios en segundos', b2:'Sigue a tu equipo en tiempo real',
     b3:'Mensajes automáticos a clientes', b4:'Control financiero completo',
     b5:'Asistente IA que trabaja por ti',
-    heroCta:'Comenzar gratis — 30 días sin tarjeta', heroDemo:'Ver demo',
+    heroCta:'Comenzar gratis — 30 días sin tarjeta', heroDemo:'Ver demo', heroCtaHint:'▼ Haz clic aquí para empezar',
     s1:'Móvil', s2:'Idiomas', s3:'Días gratis', s4:'PT · EN · ES',
     f1tag:'Agenda', f1title:'Agenda y organiza todo en segundos',
     f1desc:'Visualiza tu semana, asigna servicios a tu equipo y recibe notificaciones automáticas.',
