@@ -837,11 +837,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 
 // ── Meta Pixel — Lead (clique nos CTAs de cadastro) ──────────
 document.querySelectorAll('a[href*="tab=signup"]').forEach(a => {
-  a.addEventListener('click', function(e) {
-    e.preventDefault();
-    const dest = this.href;
+  a.addEventListener('click', function() {
     if (window.fbq) fbq('track', 'Lead');
-    setTimeout(() => { window.location.href = dest; }, 500);
   });
 });
 </script>
