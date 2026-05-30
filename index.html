@@ -876,6 +876,7 @@ function setLang(l) {
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.textContent.toLowerCase().includes(l));
   });
+  if (window.chatReset) window.chatReset(l);
 }
 setLang(currentLang);
 
@@ -927,6 +928,41 @@ document.querySelectorAll('a[href*="tab=signup"]').forEach(a => {
 // ── Hero Chat ─────────────────────────────────────────────────
 (function () {
   var SIGNUP = 'https://tipflow.business/?tab=signup';
+  var CHAT = {
+    pt: {
+      greeting: "Oi! 👋 Me conta — qual é o seu maior problema hoje no seu negócio de limpeza?",
+      freeQ: "Tem mais alguma dúvida?",
+      finalCta: "🚀 Começar grátis — 30 dias sem cartão",
+      flows: [
+        { label:"📍 Não sei onde minha equipe está", botText:"Chega de ficar ligando! Quando sua cleaner apertar 'A Caminho' e 'Cheguei' no app, você recebe a atualização na hora. Olha como aparece para você:", img:"./screenshots/job-modal.png", closing:"Cada passo da sua equipe registrado automaticamente — sem você precisar perguntar nada.", btnLabel:"📍 Rastrear Minha Equipe Grátis" },
+        { label:"💸 Perco dinheiro e não sei onde", botText:"Clientes esquecem de pagar e despesas invisíveis sugam seu lucro. O robô calcula tudo:", img:"./screenshots/dashboard.png", closing:"Descubra o dinheiro que está ficando para trás.", btnLabel:"💰 Ver Meu Lucro Real" },
+        { label:"📱 Passo o dia organizando pelo WhatsApp", botText:"Você agenda em 5 segundos e o robô avisa sua equipe e seu cliente sozinho:", img:"./screenshots/agenda.png", closing:"Pare de ser escravo do WhatsApp.", btnLabel:"📅 Organizar Minha Agenda Grátis" },
+        { label:"💬 Não sei falar inglês com clientes", botText:"Você digita em português e o robô traduz e envia em inglês fluente para seu cliente. Olha como chega no celular do americano:", img:"./screenshots/sms-chat.png", closing:"Quer destravar seu inglês hoje?", btnLabel:"🚀 Ativar Meu Tradutor Grátis" },
+      ],
+    },
+    en: {
+      greeting: "Hi! 👋 Tell me — what's your biggest challenge running your cleaning business today?",
+      freeQ: "Any other questions?",
+      finalCta: "🚀 Start free — 30 days, no card",
+      flows: [
+        { label:"📍 I don't know where my team is", botText:"No more calling around! When your cleaner taps 'On My Way' and 'Arrived' in the app, you get the update instantly. Here's how it looks:", img:"./screenshots/job-modal.png", closing:"Every step of your team tracked automatically — no need to ask.", btnLabel:"📍 Track My Team Free" },
+        { label:"💸 I'm losing money and don't know where", botText:"Clients forget to pay and invisible expenses eat your profit. The robot calculates everything:", img:"./screenshots/dashboard.png", closing:"Find the money that's slipping away.", btnLabel:"💰 See My Real Profit" },
+        { label:"📱 I spend all day organizing on WhatsApp", botText:"Schedule in 5 seconds and the robot notifies your team and your client automatically:", img:"./screenshots/agenda.png", closing:"Stop being a slave to WhatsApp.", btnLabel:"📅 Organize My Schedule Free" },
+        { label:"💬 I struggle communicating in English", botText:"You type in your language and the robot translates and sends perfect English to your client. Here's how it arrives on their phone:", img:"./screenshots/sms-chat.png", closing:"Ready to communicate in English effortlessly?", btnLabel:"🚀 Unlock My English Translator" },
+      ],
+    },
+    es: {
+      greeting: "¡Hola! 👋 Cuéntame — ¿cuál es tu mayor problema hoy en tu negocio de limpieza?",
+      freeQ: "¿Tienes alguna otra duda?",
+      finalCta: "🚀 Comenzar gratis — 30 días sin tarjeta",
+      flows: [
+        { label:"📍 No sé dónde está mi equipo", botText:"¡Deja de llamar! Cuando tu empleada presione 'En camino' y 'Llegué' en la app, recibes la actualización al instante. Mira cómo aparece:", img:"./screenshots/job-modal.png", closing:"Cada paso de tu equipo registrado automáticamente — sin que tengas que preguntar nada.", btnLabel:"📍 Rastrear Mi Equipo Gratis" },
+        { label:"💸 Pierdo dinero y no sé dónde", botText:"Los clientes olvidan pagar y los gastos invisibles se comen tu ganancia. El robot calcula todo:", img:"./screenshots/dashboard.png", closing:"Descubre el dinero que se está perdiendo.", btnLabel:"💰 Ver Mi Ganancia Real" },
+        { label:"📱 Paso el día organizando por WhatsApp", botText:"Agendas en 5 segundos y el robot avisa a tu equipo y a tu cliente solo:", img:"./screenshots/agenda.png", closing:"Deja de ser esclavo de WhatsApp.", btnLabel:"📅 Organizar Mi Agenda Gratis" },
+        { label:"💬 No sé hablar inglés con clientes", botText:"Escribes en español y el robot traduce y envía inglés fluido a tu cliente. Así llega al celular del americano:", img:"./screenshots/sms-chat.png", closing:"¿Listo para desbloquear tu inglés hoy?", btnLabel:"🚀 Activar Mi Traductor Gratis" },
+      ],
+    },
+  };
   var FLOWS = [
     {
       label:    "📍 Não sei onde minha equipe está",
@@ -962,7 +998,10 @@ document.querySelectorAll('a[href*="tab=signup"]').forEach(a => {
   var freeCount = 0;
   var freeHist  = [];
   var busy = false;
+  var currentFlow = null;
 
+  function getLang() { return localStorage.getItem('tipflow_site_lang') || 'pt'; }
+  function getI18n() { return CHAT[getLang()] || CHAT.pt; }
   function getBox()  { return document.getElementById('chatMessages'); }
   function getArea() { return document.getElementById('chatInput'); }
 
@@ -1007,8 +1046,9 @@ document.querySelectorAll('a[href*="tab=signup"]').forEach(a => {
   function renderButtons() {
     var a = getArea();
     if (!a) return;
+    var flows = getI18n().flows;
     a.innerHTML = '<div class="quick-replies">' +
-      FLOWS.map(function (f, i) {
+      flows.map(function (f, i) {
         return '<button class="quick-reply" onclick="chatFlowStart(' + i + ')">' + f.label + '</button>';
       }).join('') + '</div>';
   }
@@ -1016,7 +1056,8 @@ document.querySelectorAll('a[href*="tab=signup"]').forEach(a => {
   window.chatFlowStart = function (i) {
     if (busy) return;
     busy = true;
-    var flow = FLOWS[i];
+    var flow = getI18n().flows[i];
+    currentFlow = i;
     var a = getArea();
     if (a) a.innerHTML = '';
 
@@ -1052,14 +1093,15 @@ document.querySelectorAll('a[href*="tab=signup"]').forEach(a => {
   function showFlowCTA(btnLabel) {
     var a = getArea();
     if (!a) return;
+    var i18n = getI18n();
     a.innerHTML =
       '<div class="chat-cta">' +
       '<a href="' + SIGNUP + '" class="chat-cta-btn" onclick="if(window.fbq)fbq(\'track\',\'Lead\')">' + btnLabel + '</a>' +
       '</div>' +
       '<div style="margin-top:10px">' +
-      '<p style="font-size:12px;color:rgba(255,255,255,.4);text-align:center;margin-bottom:7px">Tem mais alguma dúvida?</p>' +
+      '<p style="font-size:12px;color:rgba(255,255,255,.4);text-align:center;margin-bottom:7px">' + i18n.freeQ + '</p>' +
       '<div class="chat-text-wrap">' +
-      '<input type="text" id="chatField" class="chat-text-input" placeholder="Escreva aqui..." onkeydown="if(event.key===\'Enter\')chatFreeMsg(this.value)"/>' +
+      '<input type="text" id="chatField" class="chat-text-input" placeholder="..." onkeydown="if(event.key===\'Enter\')chatFreeMsg(this.value)"/>' +
       '<button class="chat-send-btn" onclick="chatFreeMsg(document.getElementById(\'chatField\').value)">➤</button>' +
       '</div></div>';
   }
@@ -1087,17 +1129,28 @@ document.querySelectorAll('a[href*="tab=signup"]').forEach(a => {
       freeCount++;
       if (freeCount >= FREE_MAX) {
         var fw = getArea();
-        if (fw) fw.innerHTML = '<div class="chat-cta"><a href="' + SIGNUP + '" class="chat-cta-btn" onclick="if(window.fbq)fbq(\'track\',\'Lead\')">🚀 Começar grátis — 30 dias sem cartão</a></div>';
+        if (fw) fw.innerHTML = '<div class="chat-cta"><a href="' + SIGNUP + '" class="chat-cta-btn" onclick="if(window.fbq)fbq(\'track\',\'Lead\')">' + getI18n().finalCta + '</a></div>';
       }
     } catch (_) {
       hideTyping();
-      addBubble('bot', 'Ops, tenta de novo! 😅');
+      addBubble('bot', 'Ops! 😅');
     }
     busy = false;
   };
 
+  window.chatReset = function (lang) {
+    busy = false;
+    freeCount = 0;
+    freeHist = [];
+    currentFlow = null;
+    var box = getBox();
+    if (box) box.innerHTML = '';
+    addBubble('bot', (CHAT[lang] || CHAT.pt).greeting, false);
+    renderButtons();
+  };
+
   // Init
-  addBubble('bot', 'Oi! 👋 Me conta — qual é o seu maior problema hoje no seu negócio de limpeza?', false);
+  addBubble('bot', getI18n().greeting, false);
   renderButtons();
 })();
 </script>
