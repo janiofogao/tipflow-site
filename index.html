@@ -405,6 +405,7 @@
       justify-content: center; flex-shrink: 0; transition: all .2s;
     }
     .chat-send-btn:hover { background: var(--green2); transform: scale(1.08); }
+    .chat-img { width: 100%; border-radius: 12px; margin: 6px 0 2px; display: block; }
     .chat-cta { text-align: center; padding: 6px 0 2px; }
     .chat-cta p { font-size: 13px; color: rgba(255,255,255,.72); margin-bottom: 11px; line-height: 1.5; }
     .chat-cta-btn {
@@ -925,22 +926,50 @@ document.querySelectorAll('a[href*="tab=signup"]').forEach(a => {
 
 // ── Hero Chat ─────────────────────────────────────────────────
 (function () {
-  const QUICK = [
-    "📍 Não sei onde minha equipe está",
-    "💸 Perco dinheiro e não sei onde",
-    "📱 Passo o dia organizando pelo WhatsApp",
-    "💬 Não sei falar inglês com clientes",
+  var SIGNUP = 'https://tipflow.business/?tab=signup';
+  var FLOWS = [
+    {
+      label:    "📍 Não sei onde minha equipe está",
+      botText:  "Chega de ficar ligando! Quando sua cleaner apertar 'A Caminho' e 'Cheguei' no app, você recebe a atualização na hora. Olha como aparece para você:",
+      img:      "./screenshots/job-modal.png",
+      closing:  "Cada passo da sua equipe registrado automaticamente — sem você precisar perguntar nada.",
+      btnLabel: "📍 Rastrear Minha Equipe Grátis",
+    },
+    {
+      label:    "💸 Perco dinheiro e não sei onde",
+      botText:  "Clientes esquecem de pagar e despesas invisíveis sugam seu lucro. O robô calcula tudo:",
+      img:      "./screenshots/dashboard.png",
+      closing:  "Descubra o dinheiro que está ficando para trás.",
+      btnLabel: "💰 Ver Meu Lucro Real",
+    },
+    {
+      label:    "📱 Passo o dia organizando pelo WhatsApp",
+      botText:  "Você agenda em 5 segundos e o robô avisa sua equipe e seu cliente sozinho:",
+      img:      "./screenshots/agenda.png",
+      closing:  "Pare de ser escravo do WhatsApp.",
+      btnLabel: "📅 Organizar Minha Agenda Grátis",
+    },
+    {
+      label:    "💬 Não sei falar inglês com clientes",
+      botText:  "Você digita em português e o robô traduz e envia em inglês fluente para seu cliente. Olha como chega no celular do americano:",
+      img:      "./screenshots/sms-chat.png",
+      closing:  "Quer destravar seu inglês hoje?",
+      btnLabel: "🚀 Ativar Meu Tradutor Grátis",
+    },
   ];
-  const MAX = 3;
-  let count = parseInt(sessionStorage.getItem('tf_cc') || '0');
-  let hist  = JSON.parse(sessionStorage.getItem('tf_ch') || '[]');
-  let busy  = false;
-  window._cq = QUICK;
+
+  var FREE_MAX = 3;
+  var freeCount = 0;
+  var freeHist  = [];
+  var busy = false;
+
+  function getBox()  { return document.getElementById('chatMessages'); }
+  function getArea() { return document.getElementById('chatInput'); }
 
   function addBubble(who, text, animate) {
-    const box = document.getElementById('chatMessages');
+    var box = getBox();
     if (!box) return;
-    const d = document.createElement('div');
+    var d = document.createElement('div');
     d.className = 'chat-bubble chat-bubble-' + who;
     d.textContent = text;
     if (animate !== false) {
@@ -954,84 +983,122 @@ document.querySelectorAll('a[href*="tab=signup"]').forEach(a => {
     box.scrollTop = box.scrollHeight;
   }
 
+  function addElem(el, delay) {
+    setTimeout(function () {
+      var box = getBox();
+      if (!box) return;
+      el.style.opacity = '0';
+      box.appendChild(el);
+      requestAnimationFrame(function () { el.style.transition = 'opacity .4s'; el.style.opacity = '1'; });
+      box.scrollTop = box.scrollHeight;
+    }, delay || 0);
+  }
+
   function showTyping() {
-    const box = document.getElementById('chatMessages');
+    var box = getBox();
     if (!box) return;
-    const d = document.createElement('div');
+    var d = document.createElement('div');
     d.id = 'chatTyping'; d.className = 'chat-bubble chat-bubble-bot chat-typing';
     d.innerHTML = '<span></span><span></span><span></span>';
     box.appendChild(d); box.scrollTop = box.scrollHeight;
   }
-  function hideTyping() { const t = document.getElementById('chatTyping'); if (t) t.remove(); }
+  function hideTyping() { var t = document.getElementById('chatTyping'); if (t) t.remove(); }
 
-  function renderInput() {
-    const area = document.getElementById('chatInput');
-    if (!area) return;
-    const qHtml = hist.length === 0
-      ? '<div class="quick-replies">' +
-        QUICK.map(function (q, i) { return '<button class="quick-reply" onclick="chatSend(window._cq[' + i + '])">' + q + '</button>'; }).join('') +
-        '</div>'
-      : '';
-    area.innerHTML = qHtml +
-      '<div class="chat-text-wrap">' +
-      '<input type="text" id="chatField" class="chat-text-input" placeholder="Escreva aqui..." onkeydown="if(event.key===\'Enter\')chatSend(this.value)"/>' +
-      '<button class="chat-send-btn" onclick="chatSend(document.getElementById(\'chatField\').value)">➤</button>' +
-      '</div>';
+  function renderButtons() {
+    var a = getArea();
+    if (!a) return;
+    a.innerHTML = '<div class="quick-replies">' +
+      FLOWS.map(function (f, i) {
+        return '<button class="quick-reply" onclick="chatFlowStart(' + i + ')">' + f.label + '</button>';
+      }).join('') + '</div>';
   }
 
-  function showCTA() {
-    const area = document.getElementById('chatInput');
-    if (!area) return;
-    area.innerHTML =
+  window.chatFlowStart = function (i) {
+    if (busy) return;
+    busy = true;
+    var flow = FLOWS[i];
+    var a = getArea();
+    if (a) a.innerHTML = '';
+
+    addBubble('user', flow.label);
+    showTyping();
+
+    setTimeout(function () {
+      hideTyping();
+      addBubble('bot', flow.botText);
+
+      var img = document.createElement('img');
+      img.src = flow.img;
+      img.className = 'chat-img';
+      img.alt = '';
+      img.onerror = function () { this.style.display = 'none'; };
+      addElem(img, 300);
+
+      setTimeout(function () {
+        var cl = document.createElement('div');
+        cl.className = 'chat-bubble chat-bubble-bot';
+        cl.style.fontWeight = '600';
+        cl.textContent = flow.closing;
+        addElem(cl, 0);
+
+        setTimeout(function () {
+          showFlowCTA(flow.btnLabel);
+          busy = false;
+        }, 500);
+      }, 750);
+    }, 1000);
+  };
+
+  function showFlowCTA(btnLabel) {
+    var a = getArea();
+    if (!a) return;
+    a.innerHTML =
       '<div class="chat-cta">' +
-      '<p>Quer que eu trabalhe assim pra você todo dia? 🤖</p>' +
-      '<a href="https://tipflow.business/?tab=signup" class="chat-cta-btn" onclick="if(window.fbq)fbq(\'track\',\'Lead\')">30 dias grátis — sem cartão</a>' +
-      '</div>';
+      '<a href="' + SIGNUP + '" class="chat-cta-btn" onclick="if(window.fbq)fbq(\'track\',\'Lead\')">' + btnLabel + '</a>' +
+      '</div>' +
+      '<div style="margin-top:10px">' +
+      '<p style="font-size:12px;color:rgba(255,255,255,.4);text-align:center;margin-bottom:7px">Tem mais alguma dúvida?</p>' +
+      '<div class="chat-text-wrap">' +
+      '<input type="text" id="chatField" class="chat-text-input" placeholder="Escreva aqui..." onkeydown="if(event.key===\'Enter\')chatFreeMsg(this.value)"/>' +
+      '<button class="chat-send-btn" onclick="chatFreeMsg(document.getElementById(\'chatField\').value)">➤</button>' +
+      '</div></div>';
   }
 
-  window.chatSend = async function (text) {
+  window.chatFreeMsg = async function (text) {
     text = (text || '').trim();
     if (!text || busy) return;
     busy = true;
-    const f = document.getElementById('chatField');
+    var f = document.getElementById('chatField');
     if (f) f.value = '';
-    document.querySelectorAll('.quick-replies').forEach(function (e) { e.remove(); });
     addBubble('user', text);
-    hist.push({ role: 'user', content: text });
-    sessionStorage.setItem('tf_ch', JSON.stringify(hist));
+    freeHist.push({ role: 'user', content: text });
     showTyping();
     try {
-      const r = await fetch('/api/chat', {
+      var r = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: text, history: hist.slice(0, -1) }),
+        body: JSON.stringify({ message: text, history: freeHist.slice(0, -1) }),
       });
-      const data = await r.json();
+      var data = await r.json();
       hideTyping();
-      const reply = data.reply || '...';
+      var reply = data.reply || '...';
       addBubble('bot', reply);
-      hist.push({ role: 'assistant', content: reply });
-      sessionStorage.setItem('tf_ch', JSON.stringify(hist));
-      count++;
-      sessionStorage.setItem('tf_cc', String(count));
-      if (count >= MAX) { setTimeout(showCTA, 500); }
-      else renderInput();
+      freeHist.push({ role: 'assistant', content: reply });
+      freeCount++;
+      if (freeCount >= FREE_MAX) {
+        var fw = getArea();
+        if (fw) fw.innerHTML = '<div class="chat-cta"><a href="' + SIGNUP + '" class="chat-cta-btn" onclick="if(window.fbq)fbq(\'track\',\'Lead\')">🚀 Começar grátis — 30 dias sem cartão</a></div>';
+      }
     } catch (_) {
       hideTyping();
       addBubble('bot', 'Ops, tenta de novo! 😅');
-      renderInput();
     }
     busy = false;
   };
 
-  // Init on load
-  if (hist.length > 0) {
-    hist.forEach(function (m) { addBubble(m.role === 'user' ? 'user' : 'bot', m.content, false); });
-  } else {
-    addBubble('bot', 'Oi! 👋 Me conta — qual é o seu maior problema hoje no seu negócio de limpeza?', false);
-  }
-  if (count >= MAX) showCTA();
-  else renderInput();
+  // Init
+  addBubble('bot', 'Oi! 👋 Me conta — qual é o seu maior problema hoje no seu negócio de limpeza?', false);
+  renderButtons();
 })();
 </script>
 </body>
