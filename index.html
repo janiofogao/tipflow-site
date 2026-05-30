@@ -324,6 +324,105 @@
     .legal-content ul { padding-left: 22px; }
     .legal-content a { color: var(--green); text-decoration: none; }
     .back-btn { display: inline-flex; align-items: center; gap: 8px; color: var(--green); font-size: 14px; font-weight: 600; cursor: pointer; border: none; background: none; margin-bottom: 36px; padding: 0; }
+
+    /* ── HERO CHAT ── */
+    .hero-chat {
+      padding: 100px 24px 60px;
+      flex-direction: row;
+      text-align: left;
+      justify-content: flex-start;
+    }
+    .hero-chat-inner {
+      max-width: 1100px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+      align-items: center; position: relative; z-index: 1;
+    }
+    .robot-col { display: flex; justify-content: center; align-items: center; }
+    .robot-wrap { position: relative; display: inline-block; line-height: 0; }
+    .robot-img { width: 100%; max-width: 520px; mix-blend-mode: lighten; display: block; }
+    .robot-light {
+      position: absolute; top: 5.5%; left: 50%; transform: translateX(-10%);
+      width: 14px; height: 14px; border-radius: 50%; background: #F59E0B;
+      pointer-events: none; z-index: 2;
+      animation: bulb-blink 1.4s ease-in-out infinite;
+    }
+    @keyframes bulb-blink {
+      0%,100% { opacity:1; box-shadow: 0 0 18px 10px rgba(245,158,11,.75), 0 0 45px 22px rgba(245,158,11,.25); }
+      50%      { opacity:0.25; box-shadow: 0 0 4px 2px rgba(245,158,11,.15); }
+    }
+    .chat-col { display: flex; flex-direction: column; }
+    .chat-widget {
+      background: rgba(13,19,30,.97); border: 1px solid rgba(16,185,129,.22);
+      border-radius: 24px; overflow: hidden; width: 100%; max-width: 460px;
+      box-shadow: 0 24px 64px rgba(0,0,0,.55), 0 0 0 1px rgba(16,185,129,.06);
+    }
+    .chat-header {
+      display: flex; align-items: center; gap: 12px; padding: 15px 20px;
+      background: rgba(255,255,255,.03); border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .chat-header-avatar {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: linear-gradient(135deg,#10B981,#059669);
+      display: flex; align-items: center; justify-content: center; font-size: 19px; flex-shrink: 0;
+    }
+    .chat-header-info { flex: 1; }
+    .chat-header-name { font-size: 14px; font-weight: 700; color: #fff; }
+    .chat-header-status { font-size: 11px; color: var(--green); display: flex; align-items: center; gap: 5px; margin-top: 2px; }
+    .chat-status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: sdot 2s ease-in-out infinite; }
+    @keyframes sdot { 0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,.6);} 50%{box-shadow:0 0 0 5px rgba(16,185,129,0);} }
+    .chat-messages {
+      padding: 16px; min-height: 200px; max-height: 280px; overflow-y: auto;
+      display: flex; flex-direction: column; gap: 8px;
+      scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.08) transparent;
+    }
+    .chat-bubble { max-width: 86%; padding: 10px 14px; border-radius: 16px; font-size: 14px; line-height: 1.55; word-break: break-word; }
+    .chat-bubble-bot { background: rgba(255,255,255,.08); border-bottom-left-radius: 4px; align-self: flex-start; color: rgba(255,255,255,.9); }
+    .chat-bubble-user { background: var(--green); color: #fff; border-bottom-right-radius: 4px; align-self: flex-end; }
+    .chat-typing { display: flex; gap: 5px; align-items: center; padding: 13px 14px; }
+    .chat-typing span { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.35); animation: tdot 1.2s ease-in-out infinite; }
+    .chat-typing span:nth-child(2){animation-delay:.2s;} .chat-typing span:nth-child(3){animation-delay:.4s;}
+    @keyframes tdot { 0%,60%,100%{transform:translateY(0);opacity:.35;} 30%{transform:translateY(-6px);opacity:1;} }
+    .chat-input-area { padding: 11px 14px 15px; border-top: 1px solid rgba(255,255,255,.07); }
+    .quick-replies { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 10px; }
+    .quick-reply {
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 10px; padding: 9px 11px; font-size: 12px; font-weight: 500;
+      color: rgba(255,255,255,.8); cursor: pointer; text-align: left; line-height: 1.4;
+      transition: all .2s; font-family: 'Inter', sans-serif;
+    }
+    .quick-reply:hover { background: rgba(16,185,129,.1); border-color: rgba(16,185,129,.3); color: #fff; }
+    .chat-text-wrap { display: flex; gap: 7px; align-items: center; }
+    .chat-text-input {
+      flex: 1; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+      border-radius: 50px; padding: 10px 16px; font-size: 14px; color: #fff;
+      outline: none; font-family: 'Inter', sans-serif; transition: border-color .2s;
+    }
+    .chat-text-input::placeholder { color: rgba(255,255,255,.3); }
+    .chat-text-input:focus { border-color: rgba(16,185,129,.45); }
+    .chat-send-btn {
+      width: 38px; height: 38px; border-radius: 50%; background: var(--green); border: none;
+      color: #fff; font-size: 15px; cursor: pointer; display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0; transition: all .2s;
+    }
+    .chat-send-btn:hover { background: var(--green2); transform: scale(1.08); }
+    .chat-cta { text-align: center; padding: 6px 0 2px; }
+    .chat-cta p { font-size: 13px; color: rgba(255,255,255,.72); margin-bottom: 11px; line-height: 1.5; }
+    .chat-cta-btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--green); color: #fff; border: none; border-radius: 50px;
+      padding: 14px 24px; font-size: 14px; font-weight: 800; cursor: pointer;
+      text-decoration: none; transition: all .22s; width: 100%;
+      box-shadow: 0 6px 28px rgba(16,185,129,.4);
+    }
+    .chat-cta-btn:hover { background: var(--green2); transform: translateY(-2px); }
+    @media (max-width: 860px) {
+      .hero-chat { padding: 90px 20px 48px; }
+      .hero-chat-inner { grid-template-columns: 1fr; gap: 24px; text-align: center; }
+      .robot-col { justify-content: center; }
+      .robot-img { max-width: 240px; }
+      .chat-widget { max-width: 100%; }
+      .chat-col { align-items: center; }
+    }
   </style>
 </head>
 <body>
@@ -370,45 +469,27 @@
   </div>
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="hero-inner">
-      <div class="hero-badge fade">✦ <span data-i18n="heroBadge">Feito para empresas de limpeza nos EUA</span></div>
-      <h1 class="fade" style="transition-delay:.1s">
-        <span data-i18n="heroH1a">Administre sua empresa de limpeza</span><br/>
-        <span class="green" data-i18n="heroH1b">de qualquer lugar.</span>
-      </h1>
-      <p class="hero-sub fade" style="transition-delay:.2s" data-i18n="heroSub">
-        Agenda, clientes, equipe, pagamentos e relatórios em um único app. Em português.
-      </p>
-      <div class="hero-bullets fade" style="transition-delay:.25s">
-        <div class="hero-bullet">✅ <span data-i18n="b1">Agende serviços em segundos</span></div>
-        <div class="hero-bullet">✅ <span data-i18n="b2">Acompanhe sua equipe em tempo real</span></div>
-        <div class="hero-bullet">✅ <span data-i18n="b3">Mensagens automáticas para clientes</span></div>
-        <div class="hero-bullet">✅ <span data-i18n="b4">Controle financeiro completo</span></div>
-        <div class="hero-bullet">✅ <span data-i18n="b5">Assistente de IA que trabalha por você</span></div>
-      </div>
-      <div class="cta-hint fade" style="transition-delay:.28s" data-i18n="heroCtaHint">▼ Clique aqui para começar</div>
-      <div class="hero-btns fade" style="transition-delay:.3s">
-        <a href="https://tipflow.business/?tab=signup" class="btn-green-lg" data-i18n="heroCta">Começar grátis — 30 dias sem cartão</a>
-        <a href="#features" class="btn-outline" data-i18n="heroDemo">Ver demonstração</a>
-      </div>
-
-      <!-- 3 iPhone mockups -->
-      <div class="phones-wrap fade" style="transition-delay:.4s">
-        <div class="phone-frame phone-side phone-left">
-          <div class="phone-notch"></div>
-          <img src="./screenshots/agenda.png" alt="Agenda" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-          <div class="phone-placeholder" style="display:none"><span class="ph-icon">📅</span>Agenda</div>
+  <section class="hero hero-chat">
+    <div class="hero-chat-inner">
+      <!-- Robot -->
+      <div class="robot-col">
+        <div class="robot-wrap">
+          <img src="./screenshots/robot.png" class="robot-img" alt="TipFlow AI Assistant"/>
+          <div class="robot-light"></div>
         </div>
-        <div class="phone-frame phone-main">
-          <div class="phone-notch"></div>
-          <img src="./screenshots/job-modal.png" alt="Job" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-          <div class="phone-placeholder" style="display:none"><span class="ph-icon">🏠</span>Job</div>
-        </div>
-        <div class="phone-frame phone-side phone-right">
-          <div class="phone-notch"></div>
-          <img src="./screenshots/dashboard.png" alt="Dashboard" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-          <div class="phone-placeholder" style="display:none"><span class="ph-icon">📊</span>Dashboard</div>
+      </div>
+      <!-- Chat -->
+      <div class="chat-col">
+        <div class="chat-widget">
+          <div class="chat-header">
+            <div class="chat-header-avatar">🤖</div>
+            <div class="chat-header-info">
+              <div class="chat-header-name">TipFlow Assistant</div>
+              <div class="chat-header-status"><div class="chat-status-dot"></div> online</div>
+            </div>
+          </div>
+          <div class="chat-messages" id="chatMessages"></div>
+          <div class="chat-input-area" id="chatInput"></div>
         </div>
       </div>
     </div>
@@ -841,6 +922,117 @@ document.querySelectorAll('a[href*="tab=signup"]').forEach(a => {
     if (window.fbq) fbq('track', 'Lead');
   });
 });
+
+// ── Hero Chat ─────────────────────────────────────────────────
+(function () {
+  const QUICK = [
+    "📍 Não sei onde minha equipe está",
+    "💸 Perco dinheiro e não sei onde",
+    "📱 Passo o dia organizando pelo WhatsApp",
+    "💬 Não sei falar inglês com clientes",
+  ];
+  const MAX = 3;
+  let count = parseInt(sessionStorage.getItem('tf_cc') || '0');
+  let hist  = JSON.parse(sessionStorage.getItem('tf_ch') || '[]');
+  let busy  = false;
+  window._cq = QUICK;
+
+  function addBubble(who, text, animate) {
+    const box = document.getElementById('chatMessages');
+    if (!box) return;
+    const d = document.createElement('div');
+    d.className = 'chat-bubble chat-bubble-' + who;
+    d.textContent = text;
+    if (animate !== false) {
+      d.style.opacity = '0'; d.style.transform = 'translateY(8px)';
+      requestAnimationFrame(function () {
+        d.style.transition = 'opacity .3s,transform .3s';
+        d.style.opacity = '1'; d.style.transform = 'none';
+      });
+    }
+    box.appendChild(d);
+    box.scrollTop = box.scrollHeight;
+  }
+
+  function showTyping() {
+    const box = document.getElementById('chatMessages');
+    if (!box) return;
+    const d = document.createElement('div');
+    d.id = 'chatTyping'; d.className = 'chat-bubble chat-bubble-bot chat-typing';
+    d.innerHTML = '<span></span><span></span><span></span>';
+    box.appendChild(d); box.scrollTop = box.scrollHeight;
+  }
+  function hideTyping() { const t = document.getElementById('chatTyping'); if (t) t.remove(); }
+
+  function renderInput() {
+    const area = document.getElementById('chatInput');
+    if (!area) return;
+    const qHtml = hist.length === 0
+      ? '<div class="quick-replies">' +
+        QUICK.map(function (q, i) { return '<button class="quick-reply" onclick="chatSend(window._cq[' + i + '])">' + q + '</button>'; }).join('') +
+        '</div>'
+      : '';
+    area.innerHTML = qHtml +
+      '<div class="chat-text-wrap">' +
+      '<input type="text" id="chatField" class="chat-text-input" placeholder="Escreva aqui..." onkeydown="if(event.key===\'Enter\')chatSend(this.value)"/>' +
+      '<button class="chat-send-btn" onclick="chatSend(document.getElementById(\'chatField\').value)">➤</button>' +
+      '</div>';
+  }
+
+  function showCTA() {
+    const area = document.getElementById('chatInput');
+    if (!area) return;
+    area.innerHTML =
+      '<div class="chat-cta">' +
+      '<p>Quer que eu trabalhe assim pra você todo dia? 🤖</p>' +
+      '<a href="https://tipflow.business/?tab=signup" class="chat-cta-btn" onclick="if(window.fbq)fbq(\'track\',\'Lead\')">30 dias grátis — sem cartão</a>' +
+      '</div>';
+  }
+
+  window.chatSend = async function (text) {
+    text = (text || '').trim();
+    if (!text || busy) return;
+    busy = true;
+    const f = document.getElementById('chatField');
+    if (f) f.value = '';
+    document.querySelectorAll('.quick-replies').forEach(function (e) { e.remove(); });
+    addBubble('user', text);
+    hist.push({ role: 'user', content: text });
+    sessionStorage.setItem('tf_ch', JSON.stringify(hist));
+    showTyping();
+    try {
+      const r = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text, history: hist.slice(0, -1) }),
+      });
+      const data = await r.json();
+      hideTyping();
+      const reply = data.reply || '...';
+      addBubble('bot', reply);
+      hist.push({ role: 'assistant', content: reply });
+      sessionStorage.setItem('tf_ch', JSON.stringify(hist));
+      count++;
+      sessionStorage.setItem('tf_cc', String(count));
+      if (count >= MAX) { setTimeout(showCTA, 500); }
+      else renderInput();
+    } catch (_) {
+      hideTyping();
+      addBubble('bot', 'Ops, tenta de novo! 😅');
+      renderInput();
+    }
+    busy = false;
+  };
+
+  // Init on load
+  if (hist.length > 0) {
+    hist.forEach(function (m) { addBubble(m.role === 'user' ? 'user' : 'bot', m.content, false); });
+  } else {
+    addBubble('bot', 'Oi! 👋 Me conta — qual é o seu maior problema hoje no seu negócio de limpeza?', false);
+  }
+  if (count >= MAX) showCTA();
+  else renderInput();
+})();
 </script>
 </body>
 </html>
