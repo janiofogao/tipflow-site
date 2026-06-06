@@ -425,9 +425,46 @@
       box-shadow: 0 6px 28px rgba(16,185,129,.4);
     }
     .chat-cta-btn:hover { background: var(--green2); transform: translateY(-2px); }
+    /* ── Hero context block (title + sub + CTA above robot) ── */
+    .hero-context {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding-bottom: 8px;
+    }
+    .hero-ctx-title {
+      font-size: clamp(22px, 4vw, 40px);
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.8px;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .hero-ctx-sub {
+      font-size: clamp(14px, 2vw, 17px);
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 22px;
+      line-height: 1.5;
+    }
+    .hero-ctx-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green);
+      color: #fff;
+      border-radius: 50px;
+      padding: 16px 34px;
+      font-size: 17px;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 8px 32px rgba(16,185,129,.4);
+      transition: all .22s;
+    }
+    .hero-ctx-btn:hover { background: var(--green2); transform: translateY(-2px); box-shadow: 0 14px 44px rgba(16,185,129,.5); }
+
     @media (max-width: 860px) {
       .hero-chat { padding: 90px 20px 48px; }
       .hero-chat-inner { grid-template-columns: 1fr; gap: 24px; text-align: center; }
+      .hero-context { padding-bottom: 4px; }
       .robot-col { justify-content: center; }
       .robot-img { max-width: 240px; }
       .chat-widget { max-width: 100%; }
@@ -481,6 +518,12 @@
   <!-- HERO -->
   <section class="hero hero-chat">
     <div class="hero-chat-inner">
+      <!-- Context: title + sub + CTA — shown above robot on mobile, spans full width on desktop -->
+      <div class="hero-context">
+        <h1 class="hero-ctx-title" data-i18n="heroCtxTitle">O app para seu negócio de limpeza 🧹</h1>
+        <p class="hero-ctx-sub" data-i18n="heroCtxSub">Agenda, equipe e pagamentos — tudo no celular</p>
+        <a href="https://tipflow.business/?tab=signup" class="hero-ctx-btn" data-i18n="heroCtxCta">🚀 Começar grátis — 30 dias sem cartão</a>
+      </div>
       <!-- Robot -->
       <div class="robot-col">
         <div class="robot-wrap">
@@ -772,6 +815,9 @@ const LANGS = {
     b1:'Agende serviços em segundos', b2:'Acompanhe sua equipe em tempo real',
     b3:'Mensagens automáticas para clientes', b4:'Controle financeiro completo',
     b5:'Assistente de IA que trabalha por você',
+    heroCtxTitle:'O app para seu negócio de limpeza 🧹',
+    heroCtxSub:'Agenda, equipe e pagamentos — tudo no celular',
+    heroCtxCta:'🚀 Começar grátis — 30 dias sem cartão',
     heroCta:'Começar grátis — 30 dias sem cartão', heroDemo:'Ver demonstração', heroCtaHint:'▼ Clique aqui para começar',
     s1:'Mobile', s2:'Idiomas', s3:'Dias grátis', s4:'PT · EN · ES',
     f1tag:'Agenda', f1title:'Agende e organize tudo em segundos',
@@ -809,6 +855,9 @@ const LANGS = {
     b1:'Schedule jobs in seconds', b2:'Track your team in real time',
     b3:'Automatic client messages', b4:'Full financial control',
     b5:'AI assistant that works for you',
+    heroCtxTitle:'The app for your cleaning business 🧹',
+    heroCtxSub:'Scheduling, team and payments — all on your phone',
+    heroCtxCta:'🚀 Start free — 30 days no card needed',
     heroCta:'Start free — 30 days, no card', heroDemo:'See demo', heroCtaHint:'▼ Click here to get started',
     s1:'Mobile', s2:'Languages', s3:'Free days', s4:'PT · EN · ES',
     f1tag:'Schedule', f1title:'Schedule and organize in seconds',
@@ -846,6 +895,9 @@ const LANGS = {
     b1:'Agenda servicios en segundos', b2:'Sigue a tu equipo en tiempo real',
     b3:'Mensajes automáticos a clientes', b4:'Control financiero completo',
     b5:'Asistente IA que trabaja por ti',
+    heroCtxTitle:'La app para tu negocio de limpieza 🧹',
+    heroCtxSub:'Agenda, equipo y pagos — todo en tu celular',
+    heroCtxCta:'🚀 Empezar gratis — 30 días sin tarjeta',
     heroCta:'Comenzar gratis — 30 días sin tarjeta', heroDemo:'Ver demo', heroCtaHint:'▼ Haz clic aquí para empezar',
     s1:'Móvil', s2:'Idiomas', s3:'Días gratis', s4:'PT · EN · ES',
     f1tag:'Agenda', f1title:'Agenda y organiza todo en segundos',
