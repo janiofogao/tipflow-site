@@ -248,14 +248,56 @@
       .feature-phone { max-height: 380px; margin: 0 auto; max-width: 240px; }
     }
 
-    /* ── TESTIMONIAL ── */
-    .testimonial { background: var(--bg2); padding: 90px 24px; text-align: center; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .stars { font-size: 26px; margin-bottom: 28px; letter-spacing: 2px; }
-    .quote { font-size: clamp(20px,3.5vw,30px); font-weight: 700; letter-spacing: -.5px; line-height: 1.45; max-width: 660px; margin: 0 auto 32px; color: rgba(255,255,255,.92); }
-    .author { display: flex; align-items: center; gap: 14px; justify-content: center; }
-    .author-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--green); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px; flex-shrink: 0; }
-    .author-name { font-size: 15px; font-weight: 700; text-align: left; }
-    .author-role { font-size: 13px; color: var(--muted); text-align: left; }
+    /* ── TESTIMONIALS ── */
+    .testimonials-section {
+      background: var(--bg2);
+      padding: 72px 24px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .testimonials-title {
+      font-size: clamp(22px, 4vw, 36px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      text-align: center;
+      margin-bottom: 36px;
+      color: var(--text);
+    }
+    .testimonials-track {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding: 4px 4px 12px;
+      scrollbar-width: none;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .testimonials-track::-webkit-scrollbar { display: none; }
+    .testimonial-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 20px;
+      padding: 22px 20px;
+      min-width: 270px;
+      max-width: 290px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .tc-stars { font-size: 15px; letter-spacing: 1px; margin-bottom: 12px; }
+    .tc-text { font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.6; margin-bottom: 18px; flex: 1; font-style: italic; }
+    .tc-author { display: flex; align-items: center; gap: 10px; }
+    .tc-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, var(--green), var(--green2)); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; color: #fff; }
+    .tc-name { font-size: 14px; font-weight: 700; color: var(--text); }
+    .tc-handle { font-size: 12px; color: var(--muted); margin-top: 1px; }
+    @media (min-width: 860px) {
+      .testimonials-track {
+        flex-wrap: wrap;
+        overflow-x: visible;
+        justify-content: center;
+      }
+      .testimonial-card { min-width: 290px; max-width: 310px; }
+    }
 
     /* ── PRICING ── */
     .pricing { padding: 100px 24px; text-align: center; }
@@ -563,6 +605,74 @@
     </div>
   </div>
 
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section fade">
+    <h2 class="testimonials-title" data-i18n="testimonialsTitle">O que nossas clientes dizem 💬</h2>
+    <div class="testimonials-track">
+
+      <div class="testimonial-card">
+        <div class="tc-stars">⭐⭐⭐⭐⭐</div>
+        <p class="tc-text">"Very Good!! Tem sido muito eficiente este app."</p>
+        <div class="tc-author">
+          <div class="tc-avatar">P</div>
+          <div>
+            <div class="tc-name">Pollyanna</div>
+            <div class="tc-handle">@pollyeua83</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="tc-stars">⭐⭐⭐⭐⭐</div>
+        <p class="tc-text">"Eu estou gostando muito também, super recomendo."</p>
+        <div class="tc-author">
+          <div class="tc-avatar">E</div>
+          <div>
+            <div class="tc-name">Etelvina</div>
+            <div class="tc-handle">@etelvina95</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="tc-stars">⭐⭐⭐⭐⭐</div>
+        <p class="tc-text">"UAL 😍 eu super recomendo esse app, tem sido muito bom para minha empresa."</p>
+        <div class="tc-author">
+          <div class="tc-avatar">B</div>
+          <div>
+            <div class="tc-name">Bruna</div>
+            <div class="tc-handle">@nunesbrunaab</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="tc-stars">⭐⭐⭐⭐⭐</div>
+        <p class="tc-text">"O melhor para as houses cleaning, super recomendo."</p>
+        <div class="tc-author">
+          <div class="tc-avatar">K</div>
+          <div>
+            <div class="tc-name">Kaka</div>
+            <div class="tc-handle">@kakasantiago84</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="tc-stars">⭐⭐⭐⭐⭐</div>
+        <p class="tc-text">"Eu recommendo. Muito eficiente."</p>
+        <div class="tc-author">
+          <div class="tc-avatar">L</div>
+          <div>
+            <div class="tc-name">Leiza</div>
+            <div class="tc-handle">@leizatrindade</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- FEATURES -->
   <section class="features" id="features">
 
@@ -656,23 +766,6 @@
       </div>
     </div>
 
-  </section>
-
-  <!-- TESTIMONIAL -->
-  <section class="testimonial fade">
-    <div class="container">
-      <div class="stars">⭐⭐⭐⭐⭐</div>
-      <p class="quote" data-i18n="testimonialQ">
-        "O Tipflow mudou completamente minha rotina. Hoje tenho mais tempo e minha empresa está muito mais organizada!"
-      </p>
-      <div class="author">
-        <div class="author-avatar">LS</div>
-        <div>
-          <div class="author-name">Leiza Santos</div>
-          <div class="author-role" data-i18n="testimonialRole">Empresária de limpeza em Charlotte, NC</div>
-        </div>
-      </div>
-    </div>
   </section>
 
   <!-- PRICING -->
@@ -832,6 +925,7 @@ const LANGS = {
     f4tag:'Comunicação', f4title:'Comunicação automática com clientes',
     f4desc:'Sua equipe escreve em português. O cliente americano recebe em inglês. Sem digitação extra.',
     f4b1:'Mensagens em português', f4b2:'Cliente recebe em inglês', f4b3:'Confirmações automáticas', f4b4:'Zero digitação',
+    testimonialsTitle:'O que nossas clientes dizem 💬',
     testimonialQ:'"O Tipflow mudou completamente minha rotina. Hoje tenho mais tempo e minha empresa está muito mais organizada!"',
     testimonialRole:'Empresária de limpeza em Charlotte, NC',
     pricingTag:'Planos', pricingTitle:'Um plano. Tudo incluído.', pricingSub:'Sem letras miúdas. Sem surpresas.',
@@ -872,6 +966,7 @@ const LANGS = {
     f4tag:'Communication', f4title:'Automatic client communication',
     f4desc:'Your team types in Portuguese. The American client receives in English. Zero extra effort.',
     f4b1:'Messages in Portuguese', f4b2:'Client receives in English', f4b3:'Automatic confirmations', f4b4:'Zero typing',
+    testimonialsTitle:'What our clients say 💬',
     testimonialQ:'"Tipflow completely changed my routine. I have more time and my business is so much more organized!"',
     testimonialRole:'Cleaning business owner in Charlotte, NC',
     pricingTag:'Pricing', pricingTitle:'One plan. Everything included.', pricingSub:'No fine print. No surprises.',
@@ -912,6 +1007,7 @@ const LANGS = {
     f4tag:'Comunicación', f4title:'Comunicación automática con clientes',
     f4desc:'Tu equipo escribe en español. El cliente americano recibe en inglés. Sin esfuerzo extra.',
     f4b1:'Mensajes en español', f4b2:'Cliente recibe en inglés', f4b3:'Confirmaciones automáticas', f4b4:'Cero escritura',
+    testimonialsTitle:'Lo que dicen nuestras clientas 💬',
     testimonialQ:'"Tipflow cambió completamente mi rutina. Tengo más tiempo y mi empresa está mucho más organizada!"',
     testimonialRole:'Empresaria de limpieza en Charlotte, NC',
     pricingTag:'Planes', pricingTitle:'Un plan. Todo incluido.', pricingSub:'Sin letra pequeña. Sin sorpresas.',
