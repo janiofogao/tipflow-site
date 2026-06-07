@@ -299,6 +299,37 @@
       .testimonial-card { min-width: 290px; max-width: 310px; }
     }
 
+    /* ── TEAM / MANUAL ── */
+    .team-section { padding: 80px 24px; text-align: center; }
+    .team-title { font-size: clamp(22px, 4vw, 36px); font-weight: 800; letter-spacing: -1px; margin-bottom: 12px; color: var(--text); }
+    .team-sub { font-size: 15px; color: var(--muted); max-width: 540px; margin: 0 auto 32px; line-height: 1.6; }
+    .manual-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .manual-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.15);
+      color: var(--text); border-radius: 50px; padding: 15px 26px;
+      font-size: 14px; font-weight: 700; text-decoration: none; transition: all .2s;
+    }
+    .manual-btn:hover { background: rgba(255,255,255,.1); border-color: var(--green); transform: translateY(-2px); }
+
+    /* ── SECURITY ── */
+    .security-section {
+      padding: 72px 24px; text-align: center;
+      background: rgba(16,185,129,0.05);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .security-badge {
+      display: inline-block; font-size: clamp(20px, 4vw, 32px); font-weight: 800; letter-spacing: -0.5px;
+      color: var(--text); border: 1.5px solid var(--green); border-radius: 50px;
+      padding: 10px 28px; margin-bottom: 18px;
+    }
+    .security-text { font-size: 15px; color: var(--muted); max-width: 580px; margin: 0 auto 36px; line-height: 1.7; }
+    .security-icons { display: flex; gap: 28px; justify-content: center; flex-wrap: wrap; max-width: 700px; margin: 0 auto; }
+    .security-icon { display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 140px; }
+    .security-icon-emoji { font-size: 34px; }
+    .security-icon-label { font-size: 13px; font-weight: 600; color: var(--text); }
+
     /* ── PRICING ── */
     .pricing { padding: 100px 24px; text-align: center; }
     .pricing-card {
@@ -673,6 +704,37 @@
     </div>
   </section>
 
+  <!-- TEAM / MANUAL -->
+  <section class="team-section fade">
+    <h2 class="team-title" data-i18n="teamTitle">Fácil para sua equipe 👩‍💼</h2>
+    <p class="team-sub" data-i18n="teamSub">Sua funcionária aprende a usar em 5 minutos. Manual disponível em 3 idiomas.</p>
+    <div class="manual-btns">
+      <a class="manual-btn" href="/tipflow_manual_funcionaria_PT.pdf" target="_blank" rel="noopener noreferrer" data-i18n="manualBtnPT">🇧🇷 Manual em Português</a>
+      <a class="manual-btn" href="/tipflow_manual_employee_EN.pdf" target="_blank" rel="noopener noreferrer" data-i18n="manualBtnEN">🇺🇸 Guide in English</a>
+      <a class="manual-btn" href="/tipflow_manual_empleada_ES.pdf" target="_blank" rel="noopener noreferrer" data-i18n="manualBtnES">🇪🇸 Manual en Español</a>
+    </div>
+  </section>
+
+  <!-- SECURITY -->
+  <section class="security-section fade">
+    <div class="security-badge" data-i18n="securityTitle">🔒 Seus clientes protegidos</div>
+    <p class="security-text" data-i18n="securityText">Suas funcionárias veem só o endereço e o serviço do dia. Telefone, email e pagamento ficam só com você.</p>
+    <div class="security-icons">
+      <div class="security-icon">
+        <div class="security-icon-emoji">📵</div>
+        <div class="security-icon-label" data-i18n="securityIcon1">Sem telefone do cliente</div>
+      </div>
+      <div class="security-icon">
+        <div class="security-icon-emoji">💳</div>
+        <div class="security-icon-label" data-i18n="securityIcon2">Sem dados de pagamento</div>
+      </div>
+      <div class="security-icon">
+        <div class="security-icon-emoji">💰</div>
+        <div class="security-icon-label" data-i18n="securityIcon3">Sem valor do serviço</div>
+      </div>
+    </div>
+  </section>
+
   <!-- FEATURES -->
   <section class="features" id="features">
 
@@ -928,6 +990,12 @@ const LANGS = {
     testimonialsTitle:'O que nossas clientes dizem 💬',
     testimonialQ:'"O Tipflow mudou completamente minha rotina. Hoje tenho mais tempo e minha empresa está muito mais organizada!"',
     testimonialRole:'Empresária de limpeza em Charlotte, NC',
+    teamTitle:'Fácil para sua equipe 👩‍💼',
+    teamSub:'Sua funcionária aprende a usar em 5 minutos. Manual disponível em 3 idiomas.',
+    manualBtnPT:'🇧🇷 Manual em Português', manualBtnEN:'🇺🇸 Guide in English', manualBtnES:'🇪🇸 Manual en Español',
+    securityTitle:'🔒 Seus clientes protegidos',
+    securityText:'Suas funcionárias veem só o endereço e o serviço do dia. Telefone, email e pagamento ficam só com você.',
+    securityIcon1:'Sem telefone do cliente', securityIcon2:'Sem dados de pagamento', securityIcon3:'Sem valor do serviço',
     pricingTag:'Planos', pricingTitle:'Um plano. Tudo incluído.', pricingSub:'Sem letras miúdas. Sem surpresas.',
     pricingBadge:'30 dias grátis — sem cartão', pricingPeriod:'/mês após o período grátis',
     pf1:'Clientes ilimitados', pf2:'Equipe ilimitada', pf3:'SMS automático',
@@ -969,6 +1037,12 @@ const LANGS = {
     testimonialsTitle:'What our clients say 💬',
     testimonialQ:'"Tipflow completely changed my routine. I have more time and my business is so much more organized!"',
     testimonialRole:'Cleaning business owner in Charlotte, NC',
+    teamTitle:'Easy for your team 👩‍💼',
+    teamSub:'Your employee learns to use it in 5 minutes. Guide available in 3 languages.',
+    manualBtnPT:'🇧🇷 Manual em Português', manualBtnEN:'🇺🇸 Guide in English', manualBtnES:'🇪🇸 Manual en Español',
+    securityTitle:'🔒 Your clients protected',
+    securityText:'Your employees only see the address and today\'s job. Phone, email and payment info stays with you only.',
+    securityIcon1:'No client phone', securityIcon2:'No payment data', securityIcon3:'No service price',
     pricingTag:'Pricing', pricingTitle:'One plan. Everything included.', pricingSub:'No fine print. No surprises.',
     pricingBadge:'30 days free — no card', pricingPeriod:'/month after free period',
     pf1:'Unlimited clients', pf2:'Unlimited team', pf3:'Automatic SMS',
@@ -1010,6 +1084,12 @@ const LANGS = {
     testimonialsTitle:'Lo que dicen nuestras clientas 💬',
     testimonialQ:'"Tipflow cambió completamente mi rutina. Tengo más tiempo y mi empresa está mucho más organizada!"',
     testimonialRole:'Empresaria de limpieza en Charlotte, NC',
+    teamTitle:'Fácil para tu equipo 👩‍💼',
+    teamSub:'Tu empleada aprende a usarlo en 5 minutos. Manual disponible en 3 idiomas.',
+    manualBtnPT:'🇧🇷 Manual em Português', manualBtnEN:'🇺🇸 Guide in English', manualBtnES:'🇪🇸 Manual en Español',
+    securityTitle:'🔒 Tus clientes protegidos',
+    securityText:'Tus empleadas solo ven la dirección y el servicio del día. Teléfono, email y pagos son solo tuyos.',
+    securityIcon1:'Sin teléfono del cliente', securityIcon2:'Sin datos de pago', securityIcon3:'Sin precio del servicio',
     pricingTag:'Planes', pricingTitle:'Un plan. Todo incluido.', pricingSub:'Sin letra pequeña. Sin sorpresas.',
     pricingBadge:'30 días gratis — sin tarjeta', pricingPeriod:'/mes tras el período gratis',
     pf1:'Clientes ilimitados', pf2:'Equipo ilimitado', pf3:'SMS automático',
