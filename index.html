@@ -1468,7 +1468,7 @@ document.querySelectorAll('a[href*="tab=signup"]').forEach(a => {
       var r = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ type: 'translate', message: text }),
+        body: JSON.stringify({ type: 'translate', message: text, lang: currentLang }),
       });
       var data = await r.json();
       var translation = (data.translation || '').trim();

@@ -15,6 +15,9 @@ module.exports = async function handler(req, res) {
   if (!OPENAI_KEY) return res.status(500).json({ error: "Missing API key" });
 
   if (type === "translate") {
+    const sourceLangNames = { pt: "Portuguese", es: "Spanish", en: "Portuguese" };
+    const sourceLang = sourceLangNames[body.lang] || "Portuguese";
+
     try {
       const r = await fetch("https://api.openai.com/v1/chat/completions", {
         method: "POST",
@@ -28,7 +31,7 @@ module.exports = async function handler(req, res) {
             {
               role: "system",
               content:
-                "Translate this cleaning business message from Portuguese to professional American English. Return only the translated text, nothing else.",
+                `Translate this cleaning business message from ${sourceLang} to professional American English. Return only the translated text, nothing else.`,
             },
             { role: "user", content: message },
           ],
