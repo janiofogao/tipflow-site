@@ -8,11 +8,47 @@ module.exports = async function handler(req, res) {
   let body = req.body ?? {};
   if (typeof body === "string") body = JSON.parse(body);
 
-  const { message, history = [] } = body;
+  const { message, history = [], type } = body;
   if (!message) return res.status(400).json({ error: "Missing message" });
 
   const OPENAI_KEY = process.env.OPENAI_KEY;
   if (!OPENAI_KEY) return res.status(500).json({ error: "Missing API key" });
+
+  if (type === "translate") {
+    try {
+      const r = await fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${OPENAI_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          model: "gpt-4o-mini",
+          messages: [
+            {
+              role: "system",
+              content:
+                "Translate this cleaning business message from Portuguese to professional American English. Return only the translated text, nothing else.",
+            },
+            { role: "user", content: message },
+          ],
+          max_tokens: 200,
+          temperature: 0.3,
+        }),
+      });
+
+      if (!r.ok) {
+        const err = await r.text();
+        return res.status(500).json({ error: err });
+      }
+
+      const data = await r.json();
+      const translation = data.choices?.[0]?.message?.content || "";
+      return res.status(200).json({ translation });
+    } catch (e) {
+      return res.status(500).json({ error: e.message });
+    }
+  }
 
   const messages = [
     {

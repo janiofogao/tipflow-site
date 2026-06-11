@@ -457,7 +457,7 @@
       display: flex; flex-direction: column; gap: 8px;
       scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.08) transparent;
     }
-    .chat-bubble { max-width: 86%; padding: 10px 14px; border-radius: 16px; font-size: 14px; line-height: 1.55; word-break: break-word; }
+    .chat-bubble { max-width: 86%; padding: 10px 14px; border-radius: 16px; font-size: 14px; line-height: 1.55; word-break: break-word; white-space: pre-line; }
     .chat-bubble-bot { background: rgba(255,255,255,.08); border-bottom-left-radius: 4px; align-self: flex-start; color: rgba(255,255,255,.9); }
     .chat-bubble-user { background: var(--green); color: #fff; border-bottom-right-radius: 4px; align-self: flex-end; }
     .chat-typing { display: flex; gap: 5px; align-items: center; padding: 13px 14px; }
@@ -498,6 +498,17 @@
       box-shadow: 0 6px 28px rgba(16,185,129,.4);
     }
     .chat-cta-btn:hover { background: var(--green2); transform: translateY(-2px); }
+    .chat-cta-btn-secondary {
+      background: transparent; box-shadow: none; border: 1px solid rgba(255,255,255,.18);
+      color: rgba(255,255,255,.75); font-weight: 600; padding: 10px 20px; font-size: 13px;
+    }
+    .chat-cta-btn-secondary:hover { background: rgba(255,255,255,.06); color: #fff; transform: none; }
+    .translate-counter { text-align: center; font-size: 13px; letter-spacing: 1px; color: rgba(255,255,255,.55); margin-bottom: 10px; }
+    .translate-result {
+      background: rgba(16,185,129,.12); border: 1px solid rgba(16,185,129,.35);
+      border-radius: 12px; padding: 12px 14px; font-size: 14px; line-height: 1.55;
+      color: #fff; margin: 4px 0; align-self: flex-start; max-width: 86%; white-space: pre-line;
+    }
     /* ── Hero context block (title + sub + CTA above robot) ── */
     .hero-context {
       grid-column: 1 / -1;
@@ -1197,8 +1208,26 @@ document.querySelectorAll('a[href*="tab=signup"]').forEach(a => {
         { label:"📍 Não sei onde minha equipe está", botText:"Chega de ficar ligando! Quando sua cleaner apertar 'A Caminho' e 'Cheguei' no app, você recebe a atualização na hora. Olha como aparece para você:", img:"./screenshots/job-modal.png", closing:"Cada passo da sua equipe registrado automaticamente — sem você precisar perguntar nada.", btnLabel:"📍 Rastrear Minha Equipe Grátis" },
         { label:"💸 Perco dinheiro e não sei onde", botText:"Clientes esquecem de pagar e despesas invisíveis sugam seu lucro. O robô calcula tudo:", img:"./screenshots/dashboard.png", closing:"Descubra o dinheiro que está ficando para trás.", btnLabel:"💰 Ver Meu Lucro Real" },
         { label:"📱 Passo o dia organizando pelo WhatsApp", botText:"Você agenda em 5 segundos e o robô avisa sua equipe e seu cliente sozinho:", img:"./screenshots/agenda.png", closing:"Pare de ser escravo do WhatsApp.", btnLabel:"📅 Organizar Minha Agenda Grátis" },
-        { label:"💬 Não sei falar inglês com clientes", botText:"Você digita em português e o robô traduz e envia em inglês fluente para seu cliente. Olha como chega no celular do americano:", img:"./screenshots/sms-chat.png", closing:"Quer destravar seu inglês hoje?", btnLabel:"🚀 Ativar Meu Tradutor Grátis" },
+        { label:"💬 Não sei falar inglês com clientes", botText:"Você digita em português e o robô traduz e envia em inglês fluente para seu cliente. Olha como chega no celular do americano:", img:"./screenshots/sms-chat.png", closing:"Quer destravar seu inglês hoje?", btnLabel:"🚀 Ativar Meu Tradutor Grátis", isTranslatorDemo:true },
       ],
+      translateDemo: {
+        intro: "🎉 Teste grátis — sem cadastro!\nVocê tem 3 traduções gratuitas para experimentar.\nDigite em português e veja como chega para o seu cliente americano:",
+        placeholder: "Ex: Oi Sarah, a limpeza vai custar $200...",
+        translateBtn: "Traduzir agora →",
+        loading: "🤖 Traduzindo...",
+        resultLabel: "✨ É assim que o TipFlow fala com seus clientes americanos!",
+        tryAgain: "↩ Traduzir outra mensagem",
+        limitReachedMsg: "Você usou suas 3 traduções grátis! 🎉\nO TipFlow faz muito mais — agenda, pagamentos, equipe e robô que fala inglês por você.\nTeste completo grátis por 30 dias, sem cartão!",
+        exhaustedMsg: "Suas traduções grátis acabaram!\nQuer continuar? Crie sua conta grátis:",
+        ctaBtn: "🚀 Criar minha conta grátis →",
+        error: "Ops! Algo deu errado. Tenta de novo?",
+        counterLabels: [
+          "○ ○ ○  Traduções esgotadas",
+          "● ○ ○  1 tradução restante",
+          "● ● ○  2 traduções restantes",
+          "● ● ●  3 traduções disponíveis",
+        ],
+      },
     },
     en: {
       greeting: "Hi! 👋 Tell me — what's your biggest challenge running your cleaning business today?",
@@ -1208,8 +1237,26 @@ document.querySelectorAll('a[href*="tab=signup"]').forEach(a => {
         { label:"📍 I don't know where my team is", botText:"No more calling around! When your cleaner taps 'On My Way' and 'Arrived' in the app, you get the update instantly. Here's how it looks:", img:"./screenshots/job-modal.png", closing:"Every step of your team tracked automatically — no need to ask.", btnLabel:"📍 Track My Team Free" },
         { label:"💸 I'm losing money and don't know where", botText:"Clients forget to pay and invisible expenses eat your profit. The robot calculates everything:", img:"./screenshots/dashboard.png", closing:"Find the money that's slipping away.", btnLabel:"💰 See My Real Profit" },
         { label:"📱 I spend all day organizing on WhatsApp", botText:"Schedule in 5 seconds and the robot notifies your team and your client automatically:", img:"./screenshots/agenda.png", closing:"Stop being a slave to WhatsApp.", btnLabel:"📅 Organize My Schedule Free" },
-        { label:"💬 I struggle communicating in English", botText:"You type in your language and the robot translates and sends perfect English to your client. Here's how it arrives on their phone:", img:"./screenshots/sms-chat.png", closing:"Ready to communicate in English effortlessly?", btnLabel:"🚀 Unlock My English Translator" },
+        { label:"💬 I struggle communicating in English", botText:"You type in your language and the robot translates and sends perfect English to your client. Here's how it arrives on their phone:", img:"./screenshots/sms-chat.png", closing:"Ready to communicate in English effortlessly?", btnLabel:"🚀 Unlock My English Translator", isTranslatorDemo:true },
       ],
+      translateDemo: {
+        intro: "🎉 Free demo — no signup needed!\nYou have 3 free translations to try.\nType in your language and see how it arrives for your American client:",
+        placeholder: "E.g.: Hi Sarah, the cleaning will cost $200...",
+        translateBtn: "Translate now →",
+        loading: "🤖 Translating...",
+        resultLabel: "✨ This is how TipFlow talks to your American clients!",
+        tryAgain: "↩ Translate another message",
+        limitReachedMsg: "You used your 3 free translations! 🎉\nTipFlow does so much more — scheduling, payments, team management and a robot that speaks English for you.\nTry the full version free for 30 days, no card needed!",
+        exhaustedMsg: "Your free translations are over!\nWant to keep going? Create your free account:",
+        ctaBtn: "🚀 Create my free account →",
+        error: "Oops! Something went wrong. Try again?",
+        counterLabels: [
+          "○ ○ ○  No translations left",
+          "● ○ ○  1 translation left",
+          "● ● ○  2 translations left",
+          "● ● ●  3 translations available",
+        ],
+      },
     },
     es: {
       greeting: "¡Hola! 👋 Cuéntame — ¿cuál es tu mayor problema hoy en tu negocio de limpieza?",
@@ -1219,8 +1266,26 @@ document.querySelectorAll('a[href*="tab=signup"]').forEach(a => {
         { label:"📍 No sé dónde está mi equipo", botText:"¡Deja de llamar! Cuando tu empleada presione 'En camino' y 'Llegué' en la app, recibes la actualización al instante. Mira cómo aparece:", img:"./screenshots/job-modal.png", closing:"Cada paso de tu equipo registrado automáticamente — sin que tengas que preguntar nada.", btnLabel:"📍 Rastrear Mi Equipo Gratis" },
         { label:"💸 Pierdo dinero y no sé dónde", botText:"Los clientes olvidan pagar y los gastos invisibles se comen tu ganancia. El robot calcula todo:", img:"./screenshots/dashboard.png", closing:"Descubre el dinero que se está perdiendo.", btnLabel:"💰 Ver Mi Ganancia Real" },
         { label:"📱 Paso el día organizando por WhatsApp", botText:"Agendas en 5 segundos y el robot avisa a tu equipo y a tu cliente solo:", img:"./screenshots/agenda.png", closing:"Deja de ser esclavo de WhatsApp.", btnLabel:"📅 Organizar Mi Agenda Gratis" },
-        { label:"💬 No sé hablar inglés con clientes", botText:"Escribes en español y el robot traduce y envía inglés fluido a tu cliente. Así llega al celular del americano:", img:"./screenshots/sms-chat.png", closing:"¿Listo para desbloquear tu inglés hoy?", btnLabel:"🚀 Activar Mi Traductor Gratis" },
+        { label:"💬 No sé hablar inglés con clientes", botText:"Escribes en español y el robot traduce y envía inglés fluido a tu cliente. Así llega al celular del americano:", img:"./screenshots/sms-chat.png", closing:"¿Listo para desbloquear tu inglés hoy?", btnLabel:"🚀 Activar Mi Traductor Gratis", isTranslatorDemo:true },
       ],
+      translateDemo: {
+        intro: "🎉 Prueba gratis — ¡sin registro!\nTienes 3 traducciones gratis para probar.\nEscribe en tu idioma y mira cómo llega a tu cliente americano:",
+        placeholder: "Ej: Hola Sarah, la limpieza costará $200...",
+        translateBtn: "Traducir ahora →",
+        loading: "🤖 Traduciendo...",
+        resultLabel: "✨ ¡Así habla TipFlow con tus clientes americanos!",
+        tryAgain: "↩ Traducir otro mensaje",
+        limitReachedMsg: "¡Usaste tus 3 traducciones gratis! 🎉\nTipFlow hace mucho más — agenda, pagos, equipo y un robot que habla inglés por ti.\n¡Prueba completa gratis por 30 días, sin tarjeta!",
+        exhaustedMsg: "¡Tus traducciones gratis se acabaron!\n¿Quieres seguir? Crea tu cuenta gratis:",
+        ctaBtn: "🚀 Crear mi cuenta gratis →",
+        error: "¡Ups! Algo salió mal. ¿Intentar de nuevo?",
+        counterLabels: [
+          "○ ○ ○  Traducciones agotadas",
+          "● ○ ○  1 traducción restante",
+          "● ● ○  2 traducciones restantes",
+          "● ● ●  3 traducciones disponibles",
+        ],
+      },
     },
   };
   var FLOWS = [
@@ -1255,6 +1320,7 @@ document.querySelectorAll('a[href*="tab=signup"]').forEach(a => {
   ];
 
   var FREE_MAX = 3;
+  var DEMO_MAX = 3;
   var freeCount = 0;
   var freeHist  = [];
   var busy = false;
@@ -1343,11 +1409,106 @@ document.querySelectorAll('a[href*="tab=signup"]').forEach(a => {
         addElem(cl, 0);
 
         setTimeout(function () {
-          showFlowCTA(flow.btnLabel);
+          if (flow.isTranslatorDemo) {
+            startTranslatorDemo();
+          } else {
+            showFlowCTA(flow.btnLabel);
+          }
           busy = false;
         }, 500);
       }, 750);
     }, 1000);
+  };
+
+  function startTranslatorDemo() {
+    addBubble('bot', getI18n().translateDemo.intro);
+    renderTranslateForm();
+  }
+
+  window.renderTranslateForm = function () {
+    var a = getArea();
+    if (!a) return;
+    var t = getI18n().translateDemo;
+    var demoCount = parseInt(localStorage.getItem('tipflow_demo_count') || '0', 10);
+    var remaining = Math.max(0, DEMO_MAX - demoCount);
+
+    if (remaining <= 0) {
+      a.innerHTML =
+        '<div class="translate-counter">' + t.counterLabels[0] + '</div>' +
+        '<div class="chat-cta">' +
+        '<p>' + t.exhaustedMsg.replace(/\n/g, '<br>') + '</p>' +
+        '<a href="' + SIGNUP + '" class="chat-cta-btn" onclick="if(window.fbq)fbq(\'track\',\'Lead\')">' + t.ctaBtn + '</a>' +
+        '</div>';
+      return;
+    }
+
+    a.innerHTML =
+      '<div class="translate-counter">' + t.counterLabels[remaining] + '</div>' +
+      '<div class="chat-text-wrap">' +
+      '<input type="text" id="translateField" class="chat-text-input" placeholder="' + t.placeholder + '" onkeydown="if(event.key===\'Enter\')chatTranslateDemo(this.value)"/>' +
+      '</div>' +
+      '<div class="chat-cta" style="margin-top:10px">' +
+      '<button class="chat-cta-btn" onclick="chatTranslateDemo(document.getElementById(\'translateField\').value)">' + t.translateBtn + '</button>' +
+      '</div>';
+  };
+
+  window.chatTranslateDemo = async function (text) {
+    text = (text || '').trim();
+    if (!text || busy) return;
+    var demoCount = parseInt(localStorage.getItem('tipflow_demo_count') || '0', 10);
+    if (demoCount >= DEMO_MAX) { renderTranslateForm(); return; }
+
+    busy = true;
+    var t = getI18n().translateDemo;
+    var a = getArea();
+    addBubble('user', text);
+    if (a) a.innerHTML = '<div class="translate-counter">' + t.loading + '</div>';
+
+    try {
+      var r = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: 'translate', message: text }),
+      });
+      var data = await r.json();
+      var translation = (data.translation || '').trim();
+
+      demoCount++;
+      localStorage.setItem('tipflow_demo_count', String(demoCount));
+      var remaining = Math.max(0, DEMO_MAX - demoCount);
+
+      var resultDiv = document.createElement('div');
+      resultDiv.className = 'translate-result';
+      resultDiv.textContent = translation || '...';
+      addElem(resultDiv, 0);
+
+      var labelDiv = document.createElement('div');
+      labelDiv.className = 'chat-bubble chat-bubble-bot';
+      labelDiv.style.fontWeight = '600';
+      labelDiv.textContent = t.resultLabel;
+      addElem(labelDiv, 200);
+
+      setTimeout(function () {
+        if (demoCount >= DEMO_MAX) {
+          a.innerHTML =
+            '<div class="translate-counter">' + t.counterLabels[0] + '</div>' +
+            '<div class="chat-cta">' +
+            '<p>' + t.limitReachedMsg.replace(/\n/g, '<br>') + '</p>' +
+            '<a href="' + SIGNUP + '" class="chat-cta-btn" onclick="if(window.fbq)fbq(\'track\',\'Lead\')">' + t.ctaBtn + '</a>' +
+            '</div>';
+        } else {
+          a.innerHTML =
+            '<div class="translate-counter">' + t.counterLabels[remaining] + '</div>' +
+            '<div class="chat-cta">' +
+            '<button class="chat-cta-btn chat-cta-btn-secondary" onclick="renderTranslateForm()">' + t.tryAgain + '</button>' +
+            '</div>';
+        }
+        busy = false;
+      }, 400);
+    } catch (e) {
+      if (a) a.innerHTML = '<div class="translate-counter">' + t.error + '</div>';
+      busy = false;
+    }
   };
 
   function showFlowCTA(btnLabel) {
