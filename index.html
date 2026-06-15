@@ -1147,6 +1147,14 @@ function setLang(l) {
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.textContent.toLowerCase().includes(l));
   });
+  // Propaga o idioma escolhido para o cadastro do app
+  document.querySelectorAll('a[href*="tab=signup"]').forEach(a => {
+    try {
+      const url = new URL(a.getAttribute('href'), window.location.origin);
+      url.searchParams.set('lang', l);
+      a.setAttribute('href', url.toString());
+    } catch (_) {}
+  });
   if (window.chatReset) window.chatReset(l);
 }
 setLang(currentLang);
@@ -1198,7 +1206,7 @@ document.querySelectorAll('a[href*="tab=signup"]').forEach(a => {
 
 // ── Hero Chat ─────────────────────────────────────────────────
 (function () {
-  var SIGNUP = 'https://tipflow.business/?tab=signup';
+  function signupUrl() { return 'https://tipflow.business/?tab=signup&lang=' + getLang(); }
   var CHAT = {
     pt: {
       greeting: "Oi! 👋 Me conta — qual é o seu maior problema hoje no seu negócio de limpeza?",
@@ -1437,7 +1445,7 @@ document.querySelectorAll('a[href*="tab=signup"]').forEach(a => {
         '<div class="translate-counter">' + t.counterLabels[0] + '</div>' +
         '<div class="chat-cta">' +
         '<p>' + t.exhaustedMsg.replace(/\n/g, '<br>') + '</p>' +
-        '<a href="' + SIGNUP + '" class="chat-cta-btn" onclick="if(window.fbq)fbq(\'track\',\'Lead\')">' + t.ctaBtn + '</a>' +
+        '<a href="' + signupUrl() + '" class="chat-cta-btn" onclick="if(window.fbq)fbq(\'track\',\'Lead\')">' + t.ctaBtn + '</a>' +
         '</div>';
       return;
     }
@@ -1494,7 +1502,7 @@ document.querySelectorAll('a[href*="tab=signup"]').forEach(a => {
             '<div class="translate-counter">' + t.counterLabels[0] + '</div>' +
             '<div class="chat-cta">' +
             '<p>' + t.limitReachedMsg.replace(/\n/g, '<br>') + '</p>' +
-            '<a href="' + SIGNUP + '" class="chat-cta-btn" onclick="if(window.fbq)fbq(\'track\',\'Lead\')">' + t.ctaBtn + '</a>' +
+            '<a href="' + signupUrl() + '" class="chat-cta-btn" onclick="if(window.fbq)fbq(\'track\',\'Lead\')">' + t.ctaBtn + '</a>' +
             '</div>';
         } else {
           a.innerHTML =
@@ -1517,7 +1525,7 @@ document.querySelectorAll('a[href*="tab=signup"]').forEach(a => {
     var i18n = getI18n();
     a.innerHTML =
       '<div class="chat-cta">' +
-      '<a href="' + SIGNUP + '" class="chat-cta-btn" onclick="if(window.fbq)fbq(\'track\',\'Lead\')">' + btnLabel + '</a>' +
+      '<a href="' + signupUrl() + '" class="chat-cta-btn" onclick="if(window.fbq)fbq(\'track\',\'Lead\')">' + btnLabel + '</a>' +
       '</div>' +
       '<div style="margin-top:10px">' +
       '<p style="font-size:12px;color:rgba(255,255,255,.4);text-align:center;margin-bottom:7px">' + i18n.freeQ + '</p>' +
@@ -1550,7 +1558,7 @@ document.querySelectorAll('a[href*="tab=signup"]').forEach(a => {
       freeCount++;
       if (freeCount >= FREE_MAX) {
         var fw = getArea();
-        if (fw) fw.innerHTML = '<div class="chat-cta"><a href="' + SIGNUP + '" class="chat-cta-btn" onclick="if(window.fbq)fbq(\'track\',\'Lead\')">' + getI18n().finalCta + '</a></div>';
+        if (fw) fw.innerHTML = '<div class="chat-cta"><a href="' + signupUrl() + '" class="chat-cta-btn" onclick="if(window.fbq)fbq(\'track\',\'Lead\')">' + getI18n().finalCta + '</a></div>';
       }
     } catch (_) {
       hideTyping();
