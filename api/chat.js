@@ -63,6 +63,11 @@ module.exports = async function handler(req, res) {
         "Use emojis. Mostre valor real e específico.\n" +
         "GPS/equipe → check-in em tempo real. Dinheiro → controle de pagamentos.\n" +
         "WhatsApp → agenda automática. Inglês → gera mensagem em inglês na hora.\n" +
+        "Compatibilidade: o Tipflow é um PWA (Progressive Web App) e funciona em QUALQUER " +
+        "dispositivo com navegador — iPhone, Android, computador (Windows/Mac) e tablet. " +
+        "Não precisa baixar nada de loja de app; basta acessar tipflow.business pelo navegador. " +
+        "NUNCA diga que o app é exclusivo de uma plataforma (ex: só Apple/iOS) ou que não " +
+        "funciona em computador — isso é falso.\n" +
         "Nunca fale de assuntos fora de gestão de limpeza.",
     },
     ...history.slice(-6).map((m) => ({
