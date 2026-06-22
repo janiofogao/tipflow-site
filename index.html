@@ -579,7 +579,7 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo" onclick="scrollTop()"><span>🧹</span> Tipflow</a>
+    <a href="#" class="nav-logo" onclick="scrollToTop()"><span>🧹</span> Tipflow</a>
     <div class="nav-links">
       <a href="#features" data-i18n="navFeatures">Funcionalidades</a>
       <a href="#pricing" data-i18n="navPricing">Preços</a>
@@ -901,7 +901,7 @@
     <div class="footer-inner">
       <div class="footer-top">
         <div class="footer-brand">
-          <a href="#" class="nav-logo" onclick="scrollTop()"><span>🧹</span> Tipflow</a>
+          <a href="#" class="nav-logo" onclick="scrollToTop()"><span>🧹</span> Tipflow</a>
           <p data-i18n="footerBrand">O sistema inteligente para empresas de limpeza</p>
         </div>
         <div class="footer-col">
@@ -1178,7 +1178,10 @@ function showPage(page) {
   window.scrollTo(0, 0);
 }
 
-function scrollTop() { window.scrollTo({top:0, behavior:'smooth'}); }
+// Named scrollToTop (not scrollTop) — a global named scrollTop overwrites window.scrollTop
+// with a function, which breaks any third-party script that does window.scrollTop as a
+// numeric scroll-position check instead of calling it.
+function scrollToTop() { window.scrollTo({top:0, behavior:'smooth'}); }
 
 // ── Scroll fade-in ────────────────────────────────────────────
 const observer = new IntersectionObserver(entries => {
