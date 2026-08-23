@@ -332,19 +332,26 @@
 
     /* ── PRICING ── */
     .pricing { padding: 100px 24px; text-align: center; }
+    .pricing-grid {
+      display: flex; gap: 32px; justify-content: center; align-items: stretch;
+      flex-wrap: wrap; max-width: 940px; margin: 0 auto;
+    }
     .pricing-card {
-      max-width: 440px; margin: 0 auto;
+      flex: 1 1 400px; max-width: 440px; margin: 0 auto;
       background: rgba(255,255,255,.03);
       border: 1.5px solid var(--green);
       border-radius: 28px; padding: 44px 40px;
       box-shadow: 0 0 60px rgba(16,185,129,.12), 0 24px 64px rgba(0,0,0,.3);
-      position: relative;
+      position: relative; display: flex; flex-direction: column;
     }
+    .pricing-card.plus { border-color: var(--yellow); box-shadow: 0 0 60px rgba(245,158,11,.14), 0 24px 64px rgba(0,0,0,.3); }
+    .pricing-card .price-features { flex: 1; }
     .pricing-badge {
       position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
       background: var(--yellow); color: #000; border-radius: 50px;
       padding: 5px 18px; font-size: 12px; font-weight: 800; white-space: nowrap;
     }
+    .pricing-card.plus .pricing-badge { background: var(--green); color: #fff; }
     .price-amount { font-size: 72px; font-weight: 900; letter-spacing: -3px; color: var(--text); line-height: 1; }
     .price-period { font-size: 16px; color: var(--muted); margin-bottom: 36px; font-weight: 500; }
     .price-features { display: flex; flex-direction: column; gap: 13px; margin-bottom: 36px; text-align: left; }
@@ -858,6 +865,42 @@
       </div>
     </div>
 
+    <!-- Bloco 5: texto esquerda, phone direita -->
+    <div class="feature-block fade">
+      <div class="feature-text">
+        <div class="section-label" data-i18n="f5tag">Rota IA</div>
+        <h2 data-i18n="f5title">A IA que monta a rota mais rápida do dia</h2>
+        <p data-i18n="f5desc">Compara a ordem atual da sua agenda com a rota mais eficiente e mostra quanto tempo você economiza — só aplica se você quiser.</p>
+        <ul class="feature-bullets">
+          <li data-i18n="f5b1">Reordena os jobs flexíveis sozinha</li>
+          <li data-i18n="f5b2">Mostra a economia de tempo antes de aplicar</li>
+          <li data-i18n="f5b3">Respeita horários fixos e travados</li>
+          <li data-i18n="f5b4">Explica o motivo de cada troca</li>
+        </ul>
+      </div>
+      <div class="feature-phone" style="max-width:460px">
+        <img src="./screenshots/rota-ia.png" alt="Rota IA" onerror="this.style.display='none';this.parentElement.style.background='#1f2937'"/>
+      </div>
+    </div>
+
+    <!-- Bloco 6: Sandra IA (banner pronto, troca de imagem por idioma) esquerda, texto direita -->
+    <div class="feature-block reverse fade">
+      <div class="feature-text">
+        <div class="section-label" data-i18n="f6tag">Sandra IA</div>
+        <h2 data-i18n="f6title">Sua secretária que nunca dorme</h2>
+        <p data-i18n="f6desc">Uma recepcionista por IA atende o telefone da sua empresa, tira dúvida do cliente, dá preço e agenda direto na sua agenda — em inglês, mesmo que você só escreva em português.</p>
+        <ul class="feature-bullets">
+          <li data-i18n="f6b1">Atende ligações reais 24 horas</li>
+          <li data-i18n="f6b2">Número exclusivo da empresa incluso</li>
+          <li data-i18n="f6b3">Encaminha chamada pro seu celular quando precisar</li>
+          <li data-i18n="f6b4">Você escreve em português, ela fala inglês</li>
+        </ul>
+      </div>
+      <div class="feature-phone">
+        <img id="sandraBannerImg" src="./screenshots/sandra-banner-pt.png" alt="Sandra IA" onerror="this.style.display='none';this.parentElement.style.background='#1f2937'"/>
+      </div>
+    </div>
+
   </section>
 
   <!-- PRICING -->
@@ -865,23 +908,41 @@
     <div class="section-label" data-i18n="pricingTag">Planos</div>
     <h2 class="section-title" data-i18n="pricingTitle">Um plano. Tudo incluído.</h2>
     <p class="section-sub" style="margin:0 auto 48px" data-i18n="pricingSub">Sem letras miúdas. Sem surpresas.</p>
-    <div class="pricing-card">
-      <div class="pricing-badge" data-i18n="pricingBadge">30 dias grátis — sem cartão</div>
-      <div style="margin-bottom:8px">
-        <span class="price-amount">$49.99</span>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-badge" data-i18n="pricingBadge">30 dias grátis — sem cartão</div>
+        <div style="margin-bottom:8px">
+          <span class="price-amount">$49.99</span>
+        </div>
+        <div class="price-period" data-i18n="pricingPeriod">/mês após o período grátis</div>
+        <div class="price-features">
+          <div class="price-feature" data-i18n="pf1">Clientes ilimitados</div>
+          <div class="price-feature" data-i18n="pf2">Equipe ilimitada</div>
+          <div class="price-feature" data-i18n="pf3">SMS automático</div>
+          <div class="price-feature" data-i18n="pf4">Relatórios completos</div>
+          <div class="price-feature" data-i18n="pf5">Assistente IA</div>
+          <div class="price-feature" data-i18n="pf6">Suporte em português</div>
+          <div class="price-feature" data-i18n="pf7">GPS e Invoices</div>
+        </div>
+        <a href="https://tipflow.business/?tab=signup" class="btn-green-lg" style="width:100%;justify-content:center" data-i18n="pricingCta">Começar grátis agora</a>
+        <p class="pricing-note" data-i18n="pricingNote">Sem cartão de crédito · Sem compromisso · Cancele quando quiser</p>
       </div>
-      <div class="price-period" data-i18n="pricingPeriod">/mês após o período grátis</div>
-      <div class="price-features">
-        <div class="price-feature" data-i18n="pf1">Clientes ilimitados</div>
-        <div class="price-feature" data-i18n="pf2">Equipe ilimitada</div>
-        <div class="price-feature" data-i18n="pf3">SMS automático</div>
-        <div class="price-feature" data-i18n="pf4">Relatórios completos</div>
-        <div class="price-feature" data-i18n="pf5">Assistente IA</div>
-        <div class="price-feature" data-i18n="pf6">Suporte em português</div>
-        <div class="price-feature" data-i18n="pf7">GPS e Invoices</div>
+      <div class="pricing-card plus">
+        <div class="pricing-badge" data-i18n="pricingPlusBadge">Com Sandra IA</div>
+        <div style="margin-bottom:8px">
+          <span class="price-amount">$99.99</span>
+        </div>
+        <div class="price-period" data-i18n="pricingPlusPeriod">/mês — tudo do plano base + Sandra IA</div>
+        <div class="price-features">
+          <div class="price-feature" data-i18n="ppf1">Tudo do plano de $49,99</div>
+          <div class="price-feature" data-i18n="ppf2">Secretária Sandra IA 24/7</div>
+          <div class="price-feature" data-i18n="ppf3">Número exclusivo da empresa incluso</div>
+          <div class="price-feature" data-i18n="ppf4">Encaminhamento de chamada</div>
+          <div class="price-feature" data-i18n="ppf5">Sandra agenda e reagenda sozinha</div>
+        </div>
+        <a href="https://tipflow.business/?tab=signup" class="btn-green-lg" style="width:100%;justify-content:center" data-i18n="pricingPlusCta">Começar com a Sandra</a>
+        <p class="pricing-note" data-i18n="pricingNote">Sem cartão de crédito · Sem compromisso · Cancele quando quiser</p>
       </div>
-      <a href="https://tipflow.business/?tab=signup" class="btn-green-lg" style="width:100%;justify-content:center" data-i18n="pricingCta">Começar grátis agora</a>
-      <p class="pricing-note" data-i18n="pricingNote">Sem cartão de crédito · Sem compromisso · Cancele quando quiser</p>
     </div>
   </section>
 
@@ -1014,6 +1075,12 @@ const LANGS = {
     f4tag:'Comunicação', f4title:'Comunicação automática com clientes',
     f4desc:'Sua equipe escreve em português. O cliente americano recebe em inglês. Sem digitação extra.',
     f4b1:'Mensagens em português', f4b2:'Cliente recebe em inglês', f4b3:'Confirmações automáticas', f4b4:'Zero digitação',
+    f5tag:'Rota IA', f5title:'A IA que monta a rota mais rápida do dia',
+    f5desc:'Compara a ordem atual da sua agenda com a rota mais eficiente e mostra quanto tempo você economiza — só aplica se você quiser.',
+    f5b1:'Reordena os jobs flexíveis sozinha', f5b2:'Mostra a economia de tempo antes de aplicar', f5b3:'Respeita horários fixos e travados', f5b4:'Explica o motivo de cada troca',
+    f6tag:'Sandra IA', f6title:'Sua secretária que nunca dorme',
+    f6desc:'Uma recepcionista por IA atende o telefone da sua empresa, tira dúvida do cliente, dá preço e agenda direto na sua agenda — em inglês, mesmo que você só escreva em português.',
+    f6b1:'Atende ligações reais 24 horas', f6b2:'Número exclusivo da empresa incluso', f6b3:'Encaminha chamada pro seu celular quando precisar', f6b4:'Você escreve em português, ela fala inglês',
     testimonialsTitle:'O que nossas clientes dizem 💬',
     testimonialQ:'"O Tipflow mudou completamente minha rotina. Hoje tenho mais tempo e minha empresa está muito mais organizada!"',
     testimonialRole:'Empresária de limpeza em Charlotte, NC',
@@ -1028,6 +1095,10 @@ const LANGS = {
     pf1:'Clientes ilimitados', pf2:'Equipe ilimitada', pf3:'SMS automático',
     pf4:'Relatórios completos', pf5:'Assistente IA', pf6:'Suporte em português', pf7:'GPS e Invoices',
     pricingCta:'Começar grátis agora', pricingNote:'Sem cartão de crédito · Sem compromisso · Cancele quando quiser',
+    pricingPlusBadge:'Com Sandra IA', pricingPlusPeriod:'/mês — tudo do plano base + Sandra IA',
+    ppf1:'Tudo do plano de $49,99', ppf2:'Secretária Sandra IA 24/7', ppf3:'Número exclusivo da empresa incluso',
+    ppf4:'Encaminhamento de chamada', ppf5:'Sandra agenda e reagenda sozinha',
+    pricingPlusCta:'Começar com a Sandra',
     supportTitle:'Precisa de ajuda?', supportDesc:'Nossa equipe responde em português. Fale com a gente agora.',
     supportSms:'Enviar SMS', supportWa:'WhatsApp',
     footerBrand:'O sistema inteligente para empresas de limpeza',
@@ -1062,6 +1133,12 @@ const LANGS = {
     f4tag:'Communication', f4title:'Automatic client communication',
     f4desc:'Your team types in Portuguese. The American client receives in English. Zero extra effort.',
     f4b1:'Messages in Portuguese', f4b2:'Client receives in English', f4b3:'Automatic confirmations', f4b4:'Zero typing',
+    f5tag:'AI Route', f5title:'The AI that builds your fastest route of the day',
+    f5desc:'Compares your schedule\'s current order with the most efficient route and shows how much time you save — only applies it if you want.',
+    f5b1:'Reorders flexible jobs on its own', f5b2:'Shows the time savings before applying', f5b3:'Respects fixed, locked times', f5b4:'Explains the reason for each swap',
+    f6tag:'Sandra AI', f6title:'Your receptionist who never sleeps',
+    f6desc:'An AI receptionist answers your business phone, answers client questions, quotes a price, and books it right on your calendar — in English, even if you only type in your own language.',
+    f6b1:'Answers real calls 24/7', f6b2:'Dedicated business number included', f6b3:'Forwards the call to your cell when needed', f6b4:'You write in your language, she speaks English',
     testimonialsTitle:'What our clients say 💬',
     testimonialQ:'"Tipflow completely changed my routine. I have more time and my business is so much more organized!"',
     testimonialRole:'Cleaning business owner in Charlotte, NC',
@@ -1076,6 +1153,10 @@ const LANGS = {
     pf1:'Unlimited clients', pf2:'Unlimited team', pf3:'Automatic SMS',
     pf4:'Full reports', pf5:'AI Assistant', pf6:'Support in your language', pf7:'GPS & Invoices',
     pricingCta:'Start free now', pricingNote:'No credit card · No commitment · Cancel anytime',
+    pricingPlusBadge:'With Sandra AI', pricingPlusPeriod:'/month — everything in the base plan + Sandra AI',
+    ppf1:'Everything in the $49.99 plan', ppf2:'Sandra AI receptionist 24/7', ppf3:'Dedicated business number included',
+    ppf4:'Call forwarding', ppf5:'Sandra books and reschedules on her own',
+    pricingPlusCta:'Start with Sandra',
     supportTitle:'Need help?', supportDesc:'Our team responds fast. Talk to us now.',
     supportSms:'Send SMS', supportWa:'WhatsApp',
     footerBrand:'Smart management for cleaning businesses',
@@ -1110,6 +1191,12 @@ const LANGS = {
     f4tag:'Comunicación', f4title:'Comunicación automática con clientes',
     f4desc:'Tu equipo escribe en español. El cliente americano recibe en inglés. Sin esfuerzo extra.',
     f4b1:'Mensajes en español', f4b2:'Cliente recibe en inglés', f4b3:'Confirmaciones automáticas', f4b4:'Cero escritura',
+    f5tag:'Ruta IA', f5title:'La IA que arma la ruta más rápida del día',
+    f5desc:'Compara el orden actual de tu agenda con la ruta más eficiente y muestra cuánto tiempo ahorras — solo la aplica si tú quieres.',
+    f5b1:'Reordena los trabajos flexibles sola', f5b2:'Muestra el ahorro de tiempo antes de aplicar', f5b3:'Respeta horarios fijos y bloqueados', f5b4:'Explica el motivo de cada cambio',
+    f6tag:'Sandra IA', f6title:'Tu secretaria que nunca duerme',
+    f6desc:'Una recepcionista de IA atiende el teléfono de tu empresa, responde dudas del cliente, da el precio y agenda directo en tu calendario — en inglés, aunque tú solo escribas en español.',
+    f6b1:'Atiende llamadas reales 24 horas', f6b2:'Número exclusivo de la empresa incluido', f6b3:'Transfiere la llamada a tu celular cuando haga falta', f6b4:'Tú escribes en español, ella habla inglés',
     testimonialsTitle:'Lo que dicen nuestras clientas 💬',
     testimonialQ:'"Tipflow cambió completamente mi rutina. Tengo más tiempo y mi empresa está mucho más organizada!"',
     testimonialRole:'Empresaria de limpieza en Charlotte, NC',
@@ -1124,6 +1211,10 @@ const LANGS = {
     pf1:'Clientes ilimitados', pf2:'Equipo ilimitado', pf3:'SMS automático',
     pf4:'Informes completos', pf5:'Asistente IA', pf6:'Soporte en tu idioma', pf7:'GPS e Invoices',
     pricingCta:'Comenzar gratis ahora', pricingNote:'Sin tarjeta · Sin compromiso · Cancela cuando quieras',
+    pricingPlusBadge:'Con Sandra IA', pricingPlusPeriod:'/mes — todo el plan base + Sandra IA',
+    ppf1:'Todo el plan de $49.99', ppf2:'Secretaria Sandra IA 24/7', ppf3:'Número exclusivo de la empresa incluido',
+    ppf4:'Transferencia de llamadas', ppf5:'Sandra agenda y reagenda sola',
+    pricingPlusCta:'Comenzar con Sandra',
     supportTitle:'¿Necesitas ayuda?', supportDesc:'Nuestro equipo responde rápido. Habla con nosotros.',
     supportSms:'Enviar SMS', supportWa:'WhatsApp',
     footerBrand:'El sistema inteligente para empresas de limpieza',
@@ -1156,6 +1247,10 @@ function setLang(l) {
     } catch (_) {}
   });
   if (window.chatReset) window.chatReset(l);
+  // Banner da Sandra já vem com o texto embutido na imagem -- troca o
+  // arquivo por idioma em vez de tentar sobrepor texto em cima.
+  const sandraImg = document.getElementById('sandraBannerImg');
+  if (sandraImg) sandraImg.src = './screenshots/sandra-banner-' + (LANGS[l] ? l : 'pt') + '.png';
 }
 setLang(currentLang);
 
