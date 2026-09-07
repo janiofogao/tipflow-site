@@ -3,7 +3,8 @@
   "trailingSlash": false,
   "rewrites": [
     { "source": "/privacy", "destination": "/index" },
-    { "source": "/terms", "destination": "/index" }
+    { "source": "/terms", "destination": "/index" },
+    { "source": "/delete-account", "destination": "/index" }
   ]
 }
 

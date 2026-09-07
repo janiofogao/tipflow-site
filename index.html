@@ -1046,6 +1046,20 @@
   </div>
 </div>
 
+<!-- DELETE ACCOUNT -->
+<div id="delete-account-page" class="legal-page">
+  <nav><a href="#" class="nav-logo" onclick="showPage('main');return false;"><span>🧹</span> Tipflow</a></nav>
+  <div class="legal-content">
+    <button class="back-btn" onclick="showPage('main')">← Voltar</button>
+    <h1>Delete Your Account</h1>
+    <p>To request deletion of your TipFlow account and associated data, email <a href="mailto:admin@tipflow.business">admin@tipflow.business</a> from your account's registered address.</p>
+    <p>We will process your request within 3 business days and confirm by email. This deletes your name, contact info, company information, client records, job history, and photos.</p>
+    <p>Some financial/payment records may be retained for up to 3 years as required for tax and accounting compliance.</p>
+    <h2>Contact</h2>
+    <p>WhatsApp: <a href="https://wa.me/17043431460">+1 (704) 343-1460</a></p>
+  </div>
+</div>
+
 <script>
 // ── i18n ──────────────────────────────────────────────────────
 const LANGS = {
@@ -1267,25 +1281,25 @@ function closeMenu() {
 // skipPushState evita empilhar histórico ao restaurar a página a partir
 // da própria URL (load inicial / botão voltar) -- só quando é clique
 // dentro do site que a gente empurra um novo estado.
+const LEGAL_PAGES = ['privacy', 'terms', 'delete-account'];
 function showPage(page, skipPushState) {
   const main = document.getElementById('main-site');
-  const priv = document.getElementById('privacy-page');
-  const terms = document.getElementById('terms-page');
   main.style.display = page === 'main' ? '' : 'none';
-  priv.classList.toggle('active', page === 'privacy');
-  terms.classList.toggle('active', page === 'terms');
+  LEGAL_PAGES.forEach(function (p) {
+    document.getElementById(p + '-page').classList.toggle('active', page === p);
+  });
   window.scrollTo(0, 0);
   if (!skipPushState) {
     history.pushState({ page }, '', page === 'main' ? '/' : '/' + page);
   }
 }
 
-// Abre direto em /privacy ou /terms sem precisar clicar dentro do site --
-// as lojas de app (Apple/Google) acessam essa URL direto pra revisar a
-// política, sem passar pela home.
+// Abre direto em /privacy, /terms ou /delete-account sem precisar clicar
+// dentro do site -- as lojas de app (Apple/Google) acessam essa URL
+// direto pra revisar, sem passar pela home.
 (function initLegalPageFromUrl() {
   const path = window.location.pathname.replace(/\/$/, '');
-  if (path === '/privacy' || path === '/terms') showPage(path.slice(1), true);
+  if (LEGAL_PAGES.indexOf(path.slice(1)) !== -1) showPage(path.slice(1), true);
 })();
 window.addEventListener('popstate', function (e) {
   showPage((e.state && e.state.page) || 'main', true);
