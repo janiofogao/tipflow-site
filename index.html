@@ -1264,7 +1264,10 @@ function closeMenu() {
 }
 
 // ── Legal pages ───────────────────────────────────────────────
-function showPage(page) {
+// skipPushState evita empilhar histórico ao restaurar a página a partir
+// da própria URL (load inicial / botão voltar) -- só quando é clique
+// dentro do site que a gente empurra um novo estado.
+function showPage(page, skipPushState) {
   const main = document.getElementById('main-site');
   const priv = document.getElementById('privacy-page');
   const terms = document.getElementById('terms-page');
@@ -1272,7 +1275,21 @@ function showPage(page) {
   priv.classList.toggle('active', page === 'privacy');
   terms.classList.toggle('active', page === 'terms');
   window.scrollTo(0, 0);
+  if (!skipPushState) {
+    history.pushState({ page }, '', page === 'main' ? '/' : '/' + page);
+  }
 }
+
+// Abre direto em /privacy ou /terms sem precisar clicar dentro do site --
+// as lojas de app (Apple/Google) acessam essa URL direto pra revisar a
+// política, sem passar pela home.
+(function initLegalPageFromUrl() {
+  const path = window.location.pathname.replace(/\/$/, '');
+  if (path === '/privacy' || path === '/terms') showPage(path.slice(1), true);
+})();
+window.addEventListener('popstate', function (e) {
+  showPage((e.state && e.state.page) || 'main', true);
+});
 
 // Named scrollToTop (not scrollTop) — a global named scrollTop overwrites window.scrollTop
 // with a function, which breaks any third-party script that does window.scrollTop as a
