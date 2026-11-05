@@ -578,6 +578,38 @@
       .chat-widget { max-width: 100%; }
       .chat-col { align-items: center; }
     }
+
+    /* ── SEÇÕES NOVAS (11/2026): lojas, 3 passos, voz + Sandra, mais, importar, FAQ ── */
+    .nx-stores { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .hero-context .nx-stores { margin-top: 20px; }
+    .nx-store { display: inline-flex; align-items: center; gap: 10px; background: #000; color: #fff; border: 1px solid rgba(255,255,255,.35); border-radius: 12px; padding: 8px 18px; text-decoration: none; min-height: 48px; transition: border-color .2s; }
+    .nx-store:hover { border-color: var(--green); }
+    .nx-store small { display: block; font-size: 11px; line-height: 1.1; }
+    .nx-store b { display: block; font-size: 18px; font-weight: 600; line-height: 1.15; }
+    .nx-section { padding: 90px 24px; text-align: center; }
+    .nx-inner { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; align-items: center; }
+    .nx-inner .section-title { margin-bottom: 0; }
+    .nx-grid { width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+    .nx-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: left; display: flex; flex-direction: column; gap: 8px; }
+    .nx-card h3 { font-size: 18px; font-weight: 700; }
+    .nx-card p { font-size: 15px; color: rgba(255,255,255,.72); line-height: 1.6; }
+    .nx-num { width: 44px; height: 44px; border-radius: 999px; background: var(--green); color: #04140d; font-weight: 800; font-size: 20px; display: flex; align-items: center; justify-content: center; }
+    .nx-spot { background: radial-gradient(ellipse at top, rgba(16,185,129,.12), transparent 60%); }
+    .nx-spot-grid { width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .nx-big { border: 1px solid var(--green); background: rgba(16,185,129,.07); border-radius: 20px; padding: 32px 28px; text-align: left; display: flex; flex-direction: column; gap: 14px; }
+    .nx-big h3 { font-size: 24px; font-weight: 800; letter-spacing: -.5px; }
+    .nx-big p { font-size: 16px; color: rgba(255,255,255,.75); line-height: 1.65; }
+    .nx-big ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .nx-big li { font-size: 15px; display: flex; gap: 10px; align-items: flex-start; }
+    .nx-big li::before { content: '✓'; color: var(--green); font-weight: 800; }
+    .nx-big .nx-say li { font-style: italic; color: #e5e7eb; }
+    .nx-big .nx-say li::before { content: '🗣'; font-style: normal; }
+    .nx-link { align-self: flex-start; color: var(--green); font-weight: 700; text-decoration: none; }
+    .nx-link:hover { text-decoration: underline; }
+    .nx-faq { width: 100%; max-width: 760px; display: flex; flex-direction: column; gap: 12px; text-align: left; }
+    .nx-faq details { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; }
+    .nx-faq summary { cursor: pointer; font-weight: 700; font-size: 16px; }
+    .nx-faq p { margin-top: 8px; font-size: 15px; color: rgba(255,255,255,.72); line-height: 1.6; }
   </style>
 </head>
 <body>
@@ -591,6 +623,7 @@
     <div class="nav-links">
       <a href="#features" data-i18n="navFeatures">Funcionalidades</a>
       <a href="#pricing" data-i18n="navPricing">Preços</a>
+      <a href="#faq" data-i18n="navFaq">Perguntas</a>
       <a href="#support" data-i18n="navContact">Contato</a>
     </div>
     <div class="nav-actions">
@@ -611,6 +644,7 @@
   <div class="mobile-menu" id="mobileMenu">
     <a href="#features" onclick="closeMenu()" data-i18n="navFeatures">Funcionalidades</a>
     <a href="#pricing" onclick="closeMenu()" data-i18n="navPricing">Preços</a>
+    <a href="#faq" onclick="closeMenu()" data-i18n="navFaq">Perguntas</a>
     <a href="#support" onclick="closeMenu()" data-i18n="navContact">Contato</a>
     <div class="mob-actions">
       <a href="https://tipflow.business" class="btn-outline" style="flex:1;justify-content:center;font-size:14px;padding:11px 0" data-i18n="navLogin">Entrar</a>
@@ -633,6 +667,16 @@
         <div class="hero-ctx-ctas">
           <a href="https://tipflow.business/?tab=signup" class="hero-ctx-btn" data-i18n="heroCtxCta">🚀 Começar grátis — 30 dias sem cartão</a>
           <a href="https://wa.me/17043431460?text=Oi!%20Vi%20o%20TipFlow%20e%20quero%20saber%20mais%20%F0%9F%98%8A" class="hero-ctx-wa-btn" target="_blank" rel="noopener" data-i18n="heroWaCta">💬 Fala com a gente no WhatsApp</a>
+        </div>
+        <div class="nx-stores">
+          <a class="nx-store" href="https://apps.apple.com/app/id6811423795" target="_blank" rel="noopener" aria-label="App Store">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.3 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.4-1-2.4-4.2zM14 5.3c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.6 2.8-1.4z"/></svg>
+            <span><small data-i18n="storeAppSmall">Baixar na</small><b>App Store</b></span>
+          </a>
+          <a class="nx-store" href="https://play.google.com/store/apps/details?id=app.tipflow.mobile" target="_blank" rel="noopener" aria-label="Google Play">
+            <svg width="20" height="22" viewBox="0 0 20 22" aria-hidden="true"><path d="M1 1l10.5 10L1 21z" fill="#34A853"/><path d="M1 1l13.5 7.2-3 2.8z" fill="#4285F4"/><path d="M1 21l10.5-10 3 2.8z" fill="#EA4335"/><path d="M14.5 8.2l4 2.2c.7.4.7 1 0 1.3l-4 2.1-3-2.8z" fill="#FBBC04"/></svg>
+            <span><small data-i18n="storePlaySmall">Disponível no</small><b>Google Play</b></span>
+          </a>
         </div>
       </div>
       <!-- Robot -->
@@ -667,12 +711,25 @@
   <!-- STATS -->
   <div class="stats">
     <div class="stats-inner fade">
-      <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label" data-i18n="s1">Mobile</div></div>
-      <div class="stat-item"><div class="stat-num">3</div><div class="stat-label" data-i18n="s2">Idiomas</div></div>
-      <div class="stat-item"><div class="stat-num">30</div><div class="stat-label" data-i18n="s3">Dias grátis</div></div>
-      <div class="stat-item"><div class="stat-num" style="font-size:22px;letter-spacing:2px">🇧🇷🇺🇸🇪🇸</div><div class="stat-label" data-i18n="s4">PT · EN · ES</div></div>
+      <!-- Números reais do banco em 04/11/2026 (7.491 visitas, 8.903 mensagens, 1.261 clientes), arredondados pra baixo -->
+      <div class="stat-item"><div class="stat-num" data-i18n="n1">7.400+</div><div class="stat-label" data-i18n="s1">Visitas organizadas</div></div>
+      <div class="stat-item"><div class="stat-num" data-i18n="n2">8.900+</div><div class="stat-label" data-i18n="s2">Mensagens para clientes</div></div>
+      <div class="stat-item"><div class="stat-num" data-i18n="n3">1.200+</div><div class="stat-label" data-i18n="s3">Clientes cadastradas</div></div>
+      <div class="stat-item"><div class="stat-num">30</div><div class="stat-label" data-i18n="s4">Dias grátis</div></div>
     </div>
   </div>
+
+  <!-- COMO FUNCIONA -->
+  <section class="nx-section fade" style="padding-bottom:20px">
+    <div class="nx-inner">
+      <h2 class="section-title" data-i18n="stepsTitle">Comece em 3 passos</h2>
+      <div class="nx-grid">
+        <div class="nx-card"><div class="nx-num">1</div><h3 data-i18n="step1t">Crie sua conta</h3><p data-i18n="step1d">30 dias grátis, sem cartão.</p></div>
+        <div class="nx-card"><div class="nx-num">2</div><h3 data-i18n="step2t">Traga suas clientes</h3><p data-i18n="step2d">Suba a planilha ou cole a lista. O app organiza.</p></div>
+        <div class="nx-card"><div class="nx-num">3</div><h3 data-i18n="step3t">Convide sua equipe</h3><p data-i18n="step3d">Cada pessoa recebe o dia dela no celular.</p></div>
+      </div>
+    </div>
+  </section>
 
   <!-- TESTIMONIALS -->
   <section class="testimonials-section fade">
@@ -686,7 +743,7 @@
           <div class="tc-avatar">P</div>
           <div>
             <div class="tc-name">Pollyanna</div>
-            <div class="tc-handle">@pollyeua83</div>
+            <div class="tc-handle">Eagle Home Solutions</div>
           </div>
         </div>
       </div>
@@ -698,7 +755,7 @@
           <div class="tc-avatar">E</div>
           <div>
             <div class="tc-name">Etelvina</div>
-            <div class="tc-handle">@etelvina95</div>
+            <div class="tc-handle">Vina's Cleaning Services</div>
           </div>
         </div>
       </div>
@@ -710,7 +767,7 @@
           <div class="tc-avatar">B</div>
           <div>
             <div class="tc-name">Bruna</div>
-            <div class="tc-handle">@nunesbrunaab</div>
+            <div class="tc-handle">Aba Cleaning Service</div>
           </div>
         </div>
       </div>
@@ -734,11 +791,41 @@
           <div class="tc-avatar">L</div>
           <div>
             <div class="tc-name">Leiza</div>
-            <div class="tc-handle">@leizatrindade</div>
+            <div class="tc-handle">Leiza's Cleaning Service</div>
           </div>
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- VOZ + SANDRA (destaque) -->
+  <section class="nx-section nx-spot fade">
+    <div class="nx-inner">
+      <div class="section-label" data-i18n="spotTag">Inteligência artificial</div>
+      <h2 class="section-title" data-i18n="spotTitle">Você fala. O TipFlow resolve.</h2>
+      <p class="section-sub" style="max-width:640px" data-i18n="spotSub">Duas assistentes que trabalham por você: uma no seu celular, outra no telefone da empresa.</p>
+      <div class="nx-spot-grid">
+        <div class="nx-big">
+          <h3 data-i18n="voiceTitle">🎙️ Assistente por voz</h3>
+          <p data-i18n="voiceDesc">Fale com o app como fala com uma pessoa. Ele responde e faz o trabalho, sem você digitar nada.</p>
+          <ul class="nx-say">
+            <li data-i18n="voiceB1">"Quem não pagou essa semana?"</li>
+            <li data-i18n="voiceB2">"Marca a visita da Maria como paga"</li>
+            <li data-i18n="voiceB3">"Como está minha agenda amanhã?"</li>
+          </ul>
+        </div>
+        <div class="nx-big">
+          <h3 data-i18n="sandraTitle">📞 Sandra IA, sua recepcionista</h3>
+          <p data-i18n="sandraDesc">Atende o telefone da sua empresa 24 horas, em inglês. Tira dúvidas, dá preço e agenda direto na sua agenda.</p>
+          <ul>
+            <li data-i18n="sandraB1">Nunca mais perca uma ligação</li>
+            <li data-i18n="sandraB2">Número exclusivo da empresa incluso</li>
+            <li data-i18n="sandraB3">Passa a ligação pro seu celular quando precisar</li>
+          </ul>
+          <a href="#pricing" class="nx-link" data-i18n="sandraCta">Ver o plano com a Sandra →</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -904,6 +991,36 @@
 
   </section>
 
+  <!-- E AINDA TEM MAIS -->
+  <section class="nx-section fade" style="padding-top:0">
+    <div class="nx-inner">
+      <h2 class="section-title" data-i18n="moreTitle">E ainda tem mais</h2>
+      <div class="nx-grid">
+        <div class="nx-card"><h3 data-i18n="more1t">🔗 Portal da cliente</h3><p data-i18n="more1d">Pelo link, a cliente remarca, paga e avalia sozinha.</p></div>
+        <div class="nx-card"><h3 data-i18n="more2t">📄 Orçamento online</h3><p data-i18n="more2d">Mande o orçamento por link e saiba quando a cliente abriu.</p></div>
+        <div class="nx-card"><h3 data-i18n="more3t">💳 Cobrança no cartão</h3><p data-i18n="more3d">Cobre no cartão da cliente depois do serviço, sem correr atrás.</p></div>
+        <div class="nx-card"><h3 data-i18n="more4t">⭐ Avaliações no Google</h3><p data-i18n="more4d">No dia seguinte à limpeza, a cliente recebe o pedido de avaliação.</p></div>
+        <div class="nx-card"><h3 data-i18n="more5t">👥 Times e cobrança por hora</h3><p data-i18n="more5d">Monte times fixos e cobre por visita ou por hora trabalhada.</p></div>
+        <div class="nx-card"><h3 data-i18n="more6t">📸 Fotos do serviço</h3><p data-i18n="more6d">A equipe tira fotos de antes e depois, e elas ficam salvas na visita.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRAGA SUAS CLIENTES -->
+  <section class="nx-section fade" style="padding-top:0">
+    <div class="nx-inner">
+      <div class="section-label" data-i18n="impTag">Mudar de app</div>
+      <h2 class="section-title" data-i18n="impTitle">Já tem suas clientes em outro lugar? Traga tudo em minutos.</h2>
+      <p class="section-sub" style="max-width:640px" data-i18n="impSub">Nada de cadastrar uma por uma. Funciona com qualquer lista: de outro app, do Excel, das notas do celular ou de uma conversa do WhatsApp.</p>
+      <div class="nx-grid">
+        <div class="nx-card"><h3 data-i18n="imp1t">📊 Suba sua planilha</h3><p data-i18n="imp1d">Excel ou CSV, até a exportação do seu app antigo.</p></div>
+        <div class="nx-card"><h3 data-i18n="imp2t">📋 Ou só cole a lista</h3><p data-i18n="imp2d">Copie de onde estiver. A IA separa nome, telefone, endereço e preço sozinha.</p></div>
+        <div class="nx-card"><h3 data-i18n="imp3t">✅ Confira e pronto</h3><p data-i18n="imp3d">Você revisa antes de salvar. Clientes repetidas são puladas.</p></div>
+      </div>
+      <a href="https://tipflow.business/?tab=signup" class="btn-green-lg" data-i18n="impCta">Começar grátis e trazer minhas clientes</a>
+    </div>
+  </section>
+
   <!-- PRICING -->
   <section class="pricing fade" id="pricing">
     <div class="section-label" data-i18n="pricingTag">Planos</div>
@@ -943,6 +1060,38 @@
         </div>
         <a href="https://tipflow.business/?tab=signup" class="btn-green-lg" style="width:100%;justify-content:center" data-i18n="pricingPlusCta">Começar com a Sandra</a>
         <p class="pricing-note" data-i18n="pricingNote">Sem cartão de crédito · Sem compromisso · Cancele quando quiser</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERGUNTAS FREQUENTES -->
+  <section class="nx-section fade" id="faq" style="padding-top:0">
+    <div class="nx-inner">
+      <h2 class="section-title" data-i18n="faqTitle">Perguntas frequentes</h2>
+      <div class="nx-faq">
+        <details><summary data-i18n="q1">Preciso saber inglês?</summary><p data-i18n="a1">Não. Você e sua equipe usam o app em português, espanhol ou inglês, e suas clientes recebem as mensagens em inglês.</p></details>
+        <details><summary data-i18n="q2">Minha equipe paga alguma coisa?</summary><p data-i18n="a2">Não. A equipe é ilimitada e já está incluída no seu plano.</p></details>
+        <details><summary data-i18n="q3">Consigo trazer minhas clientes de outro app?</summary><p data-i18n="a3">Sim. Suba a planilha ou cole a lista, e o app organiza para você. Nada de cadastrar uma por uma.</p></details>
+        <details><summary data-i18n="q4">Preciso de cartão para testar?</summary><p data-i18n="a4">Não. São 30 dias grátis, sem cartão.</p></details>
+        <details><summary data-i18n="q5">Como cancelo?</summary><p data-i18n="a5">Quando quiser, sem multa e sem contrato.</p></details>
+        <details><summary data-i18n="q6">Funciona no meu celular?</summary><p data-i18n="a6">Sim, em iPhone e Android. Baixe na App Store ou no Google Play.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOJAS (fim da página) -->
+  <section class="nx-section fade" style="padding-top:0;padding-bottom:20px">
+    <div class="nx-inner" style="gap:18px">
+      <h3 style="font-size:22px;font-weight:800" data-i18n="endTitle">Baixe o TipFlow no seu celular</h3>
+      <div class="nx-stores">
+        <a class="nx-store" href="https://apps.apple.com/app/id6811423795" target="_blank" rel="noopener" aria-label="App Store">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.3 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.4-1-2.4-4.2zM14 5.3c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.6 2.8-1.4z"/></svg>
+          <span><small data-i18n="storeAppSmall">Baixar na</small><b>App Store</b></span>
+        </a>
+        <a class="nx-store" href="https://play.google.com/store/apps/details?id=app.tipflow.mobile" target="_blank" rel="noopener" aria-label="Google Play">
+          <svg width="20" height="22" viewBox="0 0 20 22" aria-hidden="true"><path d="M1 1l10.5 10L1 21z" fill="#34A853"/><path d="M1 1l13.5 7.2-3 2.8z" fill="#4285F4"/><path d="M1 21l10.5-10 3 2.8z" fill="#EA4335"/><path d="M14.5 8.2l4 2.2c.7.4.7 1 0 1.3l-4 2.1-3-2.8z" fill="#FBBC04"/></svg>
+          <span><small data-i18n="storePlaySmall">Disponível no</small><b>Google Play</b></span>
+        </a>
       </div>
     </div>
   </section>
@@ -1132,7 +1281,8 @@ const LANGS = {
     heroCtxCta:'🚀 Começar grátis — 30 dias sem cartão',
     heroWaCta:'💬 Fala com a gente no WhatsApp',
     heroCta:'Começar grátis — 30 dias sem cartão', heroDemo:'Ver demonstração', heroCtaHint:'▼ Clique aqui para começar',
-    s1:'Mobile', s2:'Idiomas', s3:'Dias grátis', s4:'PT · EN · ES',
+    s1:'Visitas organizadas', s2:'Mensagens para clientes', s3:'Clientes cadastradas', s4:'Dias grátis',
+    n1:'7.400+', n2:'8.900+', n3:'1.200+',
     f1tag:'Agenda', f1title:'Agende e organize tudo em segundos',
     f1desc:'Visualize sua semana, atribua serviços para sua equipe e receba notificações automáticas.',
     f1b1:'Visualização semanal', f1b2:'Atribua para sua equipe', f1b3:'Serviços recorrentes', f1b4:'Notificações automáticas',
@@ -1175,6 +1325,41 @@ const LANGS = {
     footerProduct:'Produto', footerLegal:'Legal', footerContact:'Contato',
     footerPrivacy:'Política de Privacidade', footerTerms:'Termos de Uso',
     footerCopy:'© 2026 Tipflow. Todos os direitos reservados.',
+    navFaq:'Perguntas', storeAppSmall:'Baixar na', storePlaySmall:'Disponível no',
+    stepsTitle:'Comece em 3 passos',
+    step1t:'Crie sua conta', step1d:'30 dias grátis, sem cartão.',
+    step2t:'Traga suas clientes', step2d:'Suba a planilha ou cole a lista. O app organiza.',
+    step3t:'Convide sua equipe', step3d:'Cada pessoa recebe o dia dela no celular.',
+    spotTag:'Inteligência artificial', spotTitle:'Você fala. O TipFlow resolve.',
+    spotSub:'Duas assistentes que trabalham por você: uma no seu celular, outra no telefone da empresa.',
+    voiceTitle:'🎙️ Assistente por voz',
+    voiceDesc:'Fale com o app como fala com uma pessoa. Ele responde e faz o trabalho, sem você digitar nada.',
+    voiceB1:'"Quem não pagou essa semana?"', voiceB2:'"Marca a visita da Maria como paga"', voiceB3:'"Como está minha agenda amanhã?"',
+    sandraTitle:'📞 Sandra IA, sua recepcionista',
+    sandraDesc:'Atende o telefone da sua empresa 24 horas, em inglês. Tira dúvidas, dá preço e agenda direto na sua agenda.',
+    sandraB1:'Nunca mais perca uma ligação', sandraB2:'Número exclusivo da empresa incluso', sandraB3:'Passa a ligação pro seu celular quando precisar',
+    sandraCta:'Ver o plano com a Sandra →',
+    moreTitle:'E ainda tem mais',
+    more1t:'🔗 Portal da cliente', more1d:'Pelo link, a cliente remarca, paga e avalia sozinha.',
+    more2t:'📄 Orçamento online', more2d:'Mande o orçamento por link e saiba quando a cliente abriu.',
+    more3t:'💳 Cobrança no cartão', more3d:'Cobre no cartão da cliente depois do serviço, sem correr atrás.',
+    more4t:'⭐ Avaliações no Google', more4d:'No dia seguinte à limpeza, a cliente recebe o pedido de avaliação.',
+    more5t:'👥 Times e cobrança por hora', more5d:'Monte times fixos e cobre por visita ou por hora trabalhada.',
+    more6t:'📸 Fotos do serviço', more6d:'A equipe tira fotos de antes e depois, e elas ficam salvas na visita.',
+    impTag:'Mudar de app', impTitle:'Já tem suas clientes em outro lugar? Traga tudo em minutos.',
+    impSub:'Nada de cadastrar uma por uma. Funciona com qualquer lista: de outro app, do Excel, das notas do celular ou de uma conversa do WhatsApp.',
+    imp1t:'📊 Suba sua planilha', imp1d:'Excel ou CSV, até a exportação do seu app antigo.',
+    imp2t:'📋 Ou só cole a lista', imp2d:'Copie de onde estiver. A IA separa nome, telefone, endereço e preço sozinha.',
+    imp3t:'✅ Confira e pronto', imp3d:'Você revisa antes de salvar. Clientes repetidas são puladas.',
+    impCta:'Começar grátis e trazer minhas clientes',
+    faqTitle:'Perguntas frequentes',
+    q1:'Preciso saber inglês?', a1:'Não. Você e sua equipe usam o app em português, espanhol ou inglês, e suas clientes recebem as mensagens em inglês.',
+    q2:'Minha equipe paga alguma coisa?', a2:'Não. A equipe é ilimitada e já está incluída no seu plano.',
+    q3:'Consigo trazer minhas clientes de outro app?', a3:'Sim. Suba a planilha ou cole a lista, e o app organiza para você. Nada de cadastrar uma por uma.',
+    q4:'Preciso de cartão para testar?', a4:'Não. São 30 dias grátis, sem cartão.',
+    q5:'Como cancelo?', a5:'Quando quiser, sem multa e sem contrato.',
+    q6:'Funciona no meu celular?', a6:'Sim, em iPhone e Android. Baixe na App Store ou no Google Play.',
+    endTitle:'Baixe o TipFlow no seu celular',
   },
   en: {
     navFeatures:'Features', navPricing:'Pricing', navContact:'Contact',
@@ -1190,7 +1375,8 @@ const LANGS = {
     heroCtxCta:'🚀 Start free — 30 days no card needed',
     heroWaCta:'💬 Chat with us on WhatsApp',
     heroCta:'Start free — 30 days, no card', heroDemo:'See demo', heroCtaHint:'▼ Click here to get started',
-    s1:'Mobile', s2:'Languages', s3:'Free days', s4:'PT · EN · ES',
+    s1:'Cleanings scheduled', s2:'Texts sent to clients', s3:'Clients managed', s4:'Days free',
+    n1:'7,400+', n2:'8,900+', n3:'1,200+',
     f1tag:'Schedule', f1title:'Schedule and organize in seconds',
     f1desc:'View your week, assign jobs to your team and receive automatic notifications.',
     f1b1:'Weekly view', f1b2:'Assign to your team', f1b3:'Recurring services', f1b4:'Automatic notifications',
@@ -1233,6 +1419,41 @@ const LANGS = {
     footerProduct:'Product', footerLegal:'Legal', footerContact:'Contact',
     footerPrivacy:'Privacy Policy', footerTerms:'Terms of Service',
     footerCopy:'© 2026 Tipflow. All rights reserved.',
+    navFaq:'FAQ', storeAppSmall:'Download on the', storePlaySmall:'Get it on',
+    stepsTitle:'Get started in 3 steps',
+    step1t:'Create your account', step1d:'30 days free, no credit card.',
+    step2t:'Bring your clients', step2d:'Upload a spreadsheet or paste your list. The app sorts it out.',
+    step3t:'Invite your team', step3d:'Each cleaner gets their day right on their phone.',
+    spotTag:'AI that works for you', spotTitle:'You talk. TipFlow gets it done.',
+    spotSub:'Two AI assistants on your team: one in your pocket, one answering your business phone.',
+    voiceTitle:'🎙️ Voice assistant',
+    voiceDesc:'Talk to the app the way you would talk to a person. It answers and does the work, no typing needed.',
+    voiceB1:'"Who hasn\'t paid this week?"', voiceB2:'"Mark Maria\'s cleaning as paid"', voiceB3:'"What does my schedule look like tomorrow?"',
+    sandraTitle:'📞 Sandra AI, your receptionist',
+    sandraDesc:'Answers your business phone 24/7. She answers questions, quotes prices and books jobs right on your schedule.',
+    sandraB1:'Never miss a call again', sandraB2:'Dedicated business number included', sandraB3:'Transfers the call to your cell when needed',
+    sandraCta:'See the plan with Sandra →',
+    moreTitle:'And there\'s more',
+    more1t:'🔗 Client portal', more1d:'With one link, clients reschedule, pay and leave a review on their own.',
+    more2t:'📄 Online estimates', more2d:'Send estimates by link and see when the client opened them.',
+    more3t:'💳 Card payments', more3d:'Charge the client\'s card after the job. No more chasing payments.',
+    more4t:'⭐ Google reviews', more4d:'The morning after the cleaning, clients get a review request.',
+    more5t:'👥 Teams and hourly billing', more5d:'Set up fixed crews and bill per visit or per hour worked.',
+    more6t:'📸 Job photos', more6d:'Your team takes before and after photos, saved right on the visit.',
+    impTag:'Switching apps', impTitle:'Already have your clients somewhere else? Bring them over in minutes.',
+    impSub:'No retyping clients one by one. Works with any list: another app, Excel, your phone\'s notes or a WhatsApp chat.',
+    imp1t:'📊 Upload your spreadsheet', imp1d:'Excel or CSV, even an export from your old app.',
+    imp2t:'📋 Or just paste your list', imp2d:'Copy it from anywhere. AI pulls out the name, phone, address and price.',
+    imp3t:'✅ Review and you\'re done', imp3d:'You check everything before saving. Duplicates are skipped.',
+    impCta:'Start free and bring my clients',
+    faqTitle:'Frequently asked questions',
+    q1:'Can my team use it in their own language?', a1:'Yes. Everyone uses the app in English, Spanish or Portuguese, and your clients always get their messages in English.',
+    q2:'Does my team pay anything?', a2:'No. Unlimited team members are included in your plan.',
+    q3:'Can I bring my clients from another app?', a3:'Yes. Upload a spreadsheet or paste your list and the app organizes it for you. No retyping one by one.',
+    q4:'Do I need a credit card to try it?', a4:'No. You get 30 days free, no card required.',
+    q5:'How do I cancel?', a5:'Anytime. No fees, no contract.',
+    q6:'Does it work on my phone?', a6:'Yes, on iPhone and Android. Download it from the App Store or Google Play.',
+    endTitle:'Get TipFlow on your phone',
   },
   es: {
     navFeatures:'Funcionalidades', navPricing:'Precios', navContact:'Contacto',
@@ -1248,7 +1469,8 @@ const LANGS = {
     heroCtxCta:'🚀 Empezar gratis — 30 días sin tarjeta',
     heroWaCta:'💬 Habla con nosotros por WhatsApp',
     heroCta:'Comenzar gratis — 30 días sin tarjeta', heroDemo:'Ver demo', heroCtaHint:'▼ Haz clic aquí para empezar',
-    s1:'Móvil', s2:'Idiomas', s3:'Días gratis', s4:'PT · EN · ES',
+    s1:'Visitas organizadas', s2:'Mensajes a clientes', s3:'Clientes registrados', s4:'Días gratis',
+    n1:'7,400+', n2:'8,900+', n3:'1,200+',
     f1tag:'Agenda', f1title:'Agenda y organiza todo en segundos',
     f1desc:'Visualiza tu semana, asigna servicios a tu equipo y recibe notificaciones automáticas.',
     f1b1:'Vista semanal', f1b2:'Asigna a tu equipo', f1b3:'Servicios recurrentes', f1b4:'Notificaciones automáticas',
@@ -1291,6 +1513,41 @@ const LANGS = {
     footerProduct:'Producto', footerLegal:'Legal', footerContact:'Contacto',
     footerPrivacy:'Política de Privacidad', footerTerms:'Términos de Uso',
     footerCopy:'© 2026 Tipflow. Todos los derechos reservados.',
+    navFaq:'Preguntas', storeAppSmall:'Descárgala en la', storePlaySmall:'Disponible en',
+    stepsTitle:'Empieza en 3 pasos',
+    step1t:'Crea tu cuenta', step1d:'30 días gratis, sin tarjeta.',
+    step2t:'Trae a tus clientes', step2d:'Sube tu hoja de cálculo o pega tu lista. La app la organiza.',
+    step3t:'Invita a tu equipo', step3d:'Cada persona recibe su día en el celular.',
+    spotTag:'Inteligencia artificial', spotTitle:'Tú hablas. TipFlow lo resuelve.',
+    spotSub:'Dos asistentes que trabajan por ti: una en tu celular y otra en el teléfono de tu empresa.',
+    voiceTitle:'🎙️ Asistente por voz',
+    voiceDesc:'Háblale a la app como le hablarías a una persona. Te responde y hace el trabajo, sin escribir nada.',
+    voiceB1:'"¿Quién no ha pagado esta semana?"', voiceB2:'"Marca la visita de María como pagada"', voiceB3:'"¿Cómo está mi agenda mañana?"',
+    sandraTitle:'📞 Sandra IA, tu recepcionista',
+    sandraDesc:'Atiende el teléfono de tu empresa las 24 horas, en inglés. Responde dudas, da precios y agenda directo en tu calendario.',
+    sandraB1:'No vuelvas a perder una llamada', sandraB2:'Número exclusivo de la empresa incluido', sandraB3:'Te pasa la llamada a tu celular cuando haga falta',
+    sandraCta:'Ver el plan con Sandra →',
+    moreTitle:'Y hay más',
+    more1t:'🔗 Portal del cliente', more1d:'Con un enlace, tu cliente reprograma, paga y deja su reseña por su cuenta.',
+    more2t:'📄 Presupuestos en línea', more2d:'Envía el presupuesto por enlace y entérate cuándo lo abrió el cliente.',
+    more3t:'💳 Cobro con tarjeta', more3d:'Cobra a la tarjeta del cliente después del servicio, sin andar persiguiendo pagos.',
+    more4t:'⭐ Reseñas en Google', more4d:'Al día siguiente de la limpieza, el cliente recibe la solicitud de reseña.',
+    more5t:'👥 Equipos y cobro por hora', more5d:'Arma equipos fijos y cobra por visita o por hora trabajada.',
+    more6t:'📸 Fotos del servicio', more6d:'Tu equipo toma fotos de antes y después, y quedan guardadas en la visita.',
+    impTag:'Cambiar de app', impTitle:'¿Ya tienes tus clientes en otro lugar? Tráelos en minutos.',
+    impSub:'Nada de registrarlos uno por uno. Funciona con cualquier lista: de otra app, de Excel, de las notas del celular o de un chat de WhatsApp.',
+    imp1t:'📊 Sube tu hoja de cálculo', imp1d:'Excel o CSV, incluso la exportación de tu app anterior.',
+    imp2t:'📋 O solo pega tu lista', imp2d:'Cópiala de donde esté. La IA separa nombre, teléfono, dirección y precio.',
+    imp3t:'✅ Revisa y listo', imp3d:'Revisas todo antes de guardar. Los repetidos se omiten.',
+    impCta:'Empezar gratis y traer mis clientes',
+    faqTitle:'Preguntas frecuentes',
+    q1:'¿Necesito hablar inglés?', a1:'No. Tú y tu equipo usan la app en español, portugués o inglés, y tus clientes reciben los mensajes en inglés.',
+    q2:'¿Mi equipo paga algo?', a2:'No. El equipo es ilimitado y ya está incluido en tu plan.',
+    q3:'¿Puedo traer mis clientes de otra app?', a3:'Sí. Sube tu hoja de cálculo o pega tu lista, y la app la organiza por ti. Nada de registrarlos uno por uno.',
+    q4:'¿Necesito tarjeta para probar?', a4:'No. Son 30 días gratis, sin tarjeta.',
+    q5:'¿Cómo cancelo?', a5:'Cuando quieras, sin multas ni contratos.',
+    q6:'¿Funciona en mi celular?', a6:'Sí, en iPhone y Android. Descárgala en la App Store o en Google Play.',
+    endTitle:'Descarga TipFlow en tu celular',
   }
 };
 
