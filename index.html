@@ -1565,11 +1565,17 @@ function setLang(l) {
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.textContent.toLowerCase().includes(l));
   });
-  // Propaga o idioma escolhido para o cadastro do app
+  // Propaga o idioma escolhido para o cadastro do app -- e a marca do link
+  // do anúncio (utm_*, fbclid), pro app gravar de onde a conta veio
+  // (organizations.signup_source, 15/11/2026).
+  const pageParams = new URLSearchParams(window.location.search);
   document.querySelectorAll('a[href*="tab=signup"]').forEach(a => {
     try {
       const url = new URL(a.getAttribute('href'), window.location.origin);
       url.searchParams.set('lang', l);
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'fbclid'].forEach(k => {
+        if (pageParams.get(k)) url.searchParams.set(k, pageParams.get(k));
+      });
       a.setAttribute('href', url.toString());
     } catch (_) {}
   });
