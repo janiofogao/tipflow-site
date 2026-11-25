@@ -1551,7 +1551,15 @@ const LANGS = {
   }
 };
 
-let currentLang = localStorage.getItem('tipflow_site_lang') || 'pt';
+// Idioma: 1) ?lang= do link (anúncio em ES/EN abre direto no idioma certo),
+// 2) o que ficou salvo no navegador, 3) português.
+let currentLang = (() => {
+  try {
+    const urlLang = new URLSearchParams(window.location.search).get('lang');
+    if (['pt', 'es', 'en'].includes(urlLang)) return urlLang;
+    return localStorage.getItem('tipflow_site_lang') || 'pt';
+  } catch (_) { return 'pt'; }
+})();
 
 function setLang(l) {
   currentLang = l;
