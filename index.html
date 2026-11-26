@@ -363,6 +363,15 @@
     .price-feature { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 500; }
     .price-feature::before { content: '✅'; flex-shrink: 0; }
     .pricing-note { font-size: 13px; color: var(--muted); margin-top: 18px; line-height: 1.7; }
+    /* Planos de entrada Básico/Profissional (25/11/2026) -- cartões menores, acima dos dois principais */
+    .pricing-grid.entry { margin-bottom: 40px; }
+    .pricing-card.entry { border-color: rgba(255,255,255,.14); box-shadow: 0 16px 40px rgba(0,0,0,.25); padding: 32px 32px; }
+    .pricing-card.entry .price-amount { font-size: 52px; letter-spacing: -2px; }
+    .pricing-card.entry .price-period { margin-bottom: 24px; }
+    .pricing-card.entry .price-features { gap: 10px; margin-bottom: 26px; }
+    .pricing-plan-name { font-size: 13px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: var(--green); margin-bottom: 10px; }
+    .btn-outline-lg { display: inline-flex; align-items: center; justify-content: center; width: 100%; padding: 15px 0; border-radius: 50px; border: 1.5px solid var(--green); color: var(--green); font-weight: 800; font-size: 16px; text-decoration: none; }
+    .btn-outline-lg:hover { background: rgba(16,185,129,.1); }
 
     /* ── SUPPORT ── */
     .support { padding: 80px 24px; text-align: center; }
@@ -1036,11 +1045,38 @@
   <!-- PRICING -->
   <section class="pricing fade" id="pricing">
     <div class="section-label" data-i18n="pricingTag">Planos</div>
-    <h2 class="section-title" data-i18n="pricingTitle">Um plano. Tudo incluído.</h2>
-    <p class="section-sub" style="margin:0 auto 48px" data-i18n="pricingSub">Sem letras miúdas. Sem surpresas.</p>
+    <h2 class="section-title" data-i18n="pricingTitle">Um plano pra cada fase do seu negócio.</h2>
+    <p class="section-sub" style="margin:0 auto 48px" data-i18n="pricingSub">Todos com 30 dias grátis, sem cartão. Sem letras miúdas.</p>
+    <div class="pricing-grid entry">
+      <div class="pricing-card entry">
+        <div class="pricing-plan-name" data-i18n="basicName">Básico</div>
+        <div style="margin-bottom:8px"><span class="price-amount">$9.99</span></div>
+        <div class="price-period" data-i18n="basicPeriod">/mês — pra quem trabalha sozinha</div>
+        <div class="price-features">
+          <div class="price-feature" data-i18n="bf1">Até 15 clientes</div>
+          <div class="price-feature" data-i18n="bf2">Agenda e portal do cliente</div>
+          <div class="price-feature" data-i18n="bf3">100 lembretes por SMS por mês</div>
+          <div class="price-feature" data-i18n="bf4">Assistente IA por texto</div>
+        </div>
+        <a href="https://tipflow.business/?tab=signup&plano=basico" class="btn-outline-lg" data-i18n="entryCta">Começar grátis</a>
+      </div>
+      <div class="pricing-card entry">
+        <div class="pricing-plan-name" data-i18n="proName">Profissional</div>
+        <div style="margin-bottom:8px"><span class="price-amount">$29.99</span></div>
+        <div class="price-period" data-i18n="proPeriod">/mês — você + até 2 funcionárias</div>
+        <div class="price-features">
+          <div class="price-feature" data-i18n="prf1">Até 40 clientes</div>
+          <div class="price-feature" data-i18n="prf2">Até 2 funcionárias com check-in</div>
+          <div class="price-feature" data-i18n="prf3">200 lembretes por SMS por mês</div>
+          <div class="price-feature" data-i18n="prf4">Faturas e recibos</div>
+        </div>
+        <a href="https://tipflow.business/?tab=signup&plano=profissional" class="btn-outline-lg" data-i18n="entryCta">Começar grátis</a>
+      </div>
+    </div>
     <div class="pricing-grid">
       <div class="pricing-card">
         <div class="pricing-badge" data-i18n="pricingBadge">30 dias grátis — sem cartão</div>
+        <div class="pricing-plan-name" data-i18n="stdName">Padrão</div>
         <div style="margin-bottom:8px">
           <span class="price-amount">$49.99</span>
         </div>
@@ -1054,11 +1090,12 @@
           <div class="price-feature" data-i18n="pf6">Suporte em português</div>
           <div class="price-feature" data-i18n="pf7">GPS e Invoices</div>
         </div>
-        <a href="https://tipflow.business/?tab=signup" class="btn-green-lg" style="width:100%;justify-content:center" data-i18n="pricingCta">Começar grátis agora</a>
+        <a href="https://tipflow.business/?tab=signup&plano=standard" class="btn-green-lg" style="width:100%;justify-content:center" data-i18n="pricingCta">Começar grátis agora</a>
         <p class="pricing-note" data-i18n="pricingNote">Sem cartão de crédito · Sem compromisso · Cancele quando quiser</p>
       </div>
       <div class="pricing-card plus">
         <div class="pricing-badge" data-i18n="pricingPlusBadge">Com Sandra IA</div>
+        <div class="pricing-plan-name" style="color:var(--yellow)">Plus</div>
         <div style="margin-bottom:8px">
           <span class="price-amount">$99.99</span>
         </div>
@@ -1070,7 +1107,7 @@
           <div class="price-feature" data-i18n="ppf4">Encaminhamento de chamada</div>
           <div class="price-feature" data-i18n="ppf5">Sandra agenda e reagenda sozinha</div>
         </div>
-        <a href="https://tipflow.business/?tab=signup" class="btn-green-lg" style="width:100%;justify-content:center" data-i18n="pricingPlusCta">Começar com a Sandra</a>
+        <a href="https://tipflow.business/?tab=signup&plano=completo" class="btn-green-lg" style="width:100%;justify-content:center" data-i18n="pricingPlusCta">Começar com a Sandra</a>
         <p class="pricing-note" data-i18n="pricingNote">Sem cartão de crédito · Sem compromisso · Cancele quando quiser</p>
       </div>
     </div>
@@ -1323,7 +1360,7 @@ const LANGS = {
     securityTitle:'🔒 Seus clientes protegidos',
     securityText:'Suas funcionárias veem só o endereço e o serviço do dia. Telefone, email e pagamento ficam só com você.',
     securityIcon1:'Sem telefone do cliente', securityIcon2:'Sem dados de pagamento', securityIcon3:'Sem valor do serviço',
-    pricingTag:'Planos', pricingTitle:'Um plano. Tudo incluído.', pricingSub:'Sem letras miúdas. Sem surpresas.',
+    pricingTag:'Planos', pricingTitle:'Um plano pra cada fase do seu negócio.', pricingSub:'Todos com 30 dias grátis, sem cartão. Sem letras miúdas.',
     pricingBadge:'30 dias grátis — sem cartão', pricingPeriod:'/mês após o período grátis',
     pf1:'Clientes ilimitados', pf2:'Equipe ilimitada', pf3:'SMS automático',
     pf4:'Relatórios completos', pf5:'Assistente IA', pf6:'Suporte em português', pf7:'GPS e Invoices',
@@ -1332,6 +1369,8 @@ const LANGS = {
     ppf1:'Tudo do plano de $49,99', ppf2:'Secretária Sandra IA 24/7', ppf3:'Número exclusivo da empresa incluso',
     ppf4:'Encaminhamento de chamada', ppf5:'Sandra agenda e reagenda sozinha',
     pricingPlusCta:'Começar com a Sandra',
+    basicName:'Básico', basicPeriod:'/mês — pra quem trabalha sozinha', bf1:'Até 15 clientes', bf2:'Agenda e portal do cliente', bf3:'100 lembretes por SMS por mês', bf4:'Assistente IA por texto',
+    proName:'Profissional', proPeriod:'/mês — você + até 2 funcionárias', prf1:'Até 40 clientes', prf2:'Até 2 funcionárias com check-in', prf3:'200 lembretes por SMS por mês', prf4:'Faturas e recibos', entryCta:'Começar grátis', stdName:'Padrão',
     supportTitle:'Precisa de ajuda?', supportDesc:'Nossa equipe responde em português. Fale com a gente agora.',
     supportSms:'Enviar SMS', supportWa:'WhatsApp',
     footerBrand:'O sistema inteligente para empresas de limpeza',
@@ -1418,7 +1457,7 @@ const LANGS = {
     securityTitle:'🔒 Your clients protected',
     securityText:'Your employees only see the address and today\'s job. Phone, email and payment info stays with you only.',
     securityIcon1:'No client phone', securityIcon2:'No payment data', securityIcon3:'No service price',
-    pricingTag:'Pricing', pricingTitle:'One plan. Everything included.', pricingSub:'No fine print. No surprises.',
+    pricingTag:'Pricing', pricingTitle:'A plan for every stage of your business.', pricingSub:'All with 30 days free, no card. No fine print.',
     pricingBadge:'30 days free — no card', pricingPeriod:'/month after free period',
     pf1:'Unlimited clients', pf2:'Unlimited team', pf3:'Automatic SMS',
     pf4:'Full reports', pf5:'AI Assistant', pf6:'Support in your language', pf7:'GPS & Invoices',
@@ -1427,6 +1466,8 @@ const LANGS = {
     ppf1:'Everything in the $49.99 plan', ppf2:'Sandra AI receptionist 24/7', ppf3:'Dedicated business number included',
     ppf4:'Call forwarding', ppf5:'Sandra books and reschedules on her own',
     pricingPlusCta:'Start with Sandra',
+    basicName:'Basic', basicPeriod:'/month — for solo cleaners', bf1:'Up to 15 clients', bf2:'Schedule and client portal', bf3:'100 SMS reminders per month', bf4:'AI assistant (text)',
+    proName:'Professional', proPeriod:'/month — you + up to 2 workers', prf1:'Up to 40 clients', prf2:'Up to 2 workers with check-in', prf3:'200 SMS reminders per month', prf4:'Invoices and receipts', entryCta:'Start free', stdName:'Standard',
     supportTitle:'Need help?', supportDesc:'Our team responds fast. Talk to us now.',
     supportSms:'Send SMS', supportWa:'WhatsApp',
     footerBrand:'Smart management for cleaning businesses',
@@ -1513,7 +1554,7 @@ const LANGS = {
     securityTitle:'🔒 Tus clientes protegidos',
     securityText:'Tus empleadas solo ven la dirección y el servicio del día. Teléfono, email y pagos son solo tuyos.',
     securityIcon1:'Sin teléfono del cliente', securityIcon2:'Sin datos de pago', securityIcon3:'Sin precio del servicio',
-    pricingTag:'Planes', pricingTitle:'Un plan. Todo incluido.', pricingSub:'Sin letra pequeña. Sin sorpresas.',
+    pricingTag:'Planes', pricingTitle:'Un plan para cada etapa de tu negocio.', pricingSub:'Todos con 30 días gratis, sin tarjeta. Sin letra pequeña.',
     pricingBadge:'30 días gratis — sin tarjeta', pricingPeriod:'/mes tras el período gratis',
     pf1:'Clientes ilimitados', pf2:'Equipo ilimitado', pf3:'SMS automático',
     pf4:'Informes completos', pf5:'Asistente IA', pf6:'Soporte en tu idioma', pf7:'GPS e Invoices',
@@ -1522,6 +1563,8 @@ const LANGS = {
     ppf1:'Todo el plan de $49.99', ppf2:'Secretaria Sandra IA 24/7', ppf3:'Número exclusivo de la empresa incluido',
     ppf4:'Transferencia de llamadas', ppf5:'Sandra agenda y reagenda sola',
     pricingPlusCta:'Comenzar con Sandra',
+    basicName:'Básico', basicPeriod:'/mes — para quien trabaja sola', bf1:'Hasta 15 clientes', bf2:'Agenda y portal del cliente', bf3:'100 recordatorios por SMS al mes', bf4:'Asistente IA por texto',
+    proName:'Profesional', proPeriod:'/mes — tú + hasta 2 empleadas', prf1:'Hasta 40 clientes', prf2:'Hasta 2 empleadas con check-in', prf3:'200 recordatorios por SMS al mes', prf4:'Facturas y recibos', entryCta:'Comenzar gratis', stdName:'Estándar',
     supportTitle:'¿Necesitas ayuda?', supportDesc:'Nuestro equipo responde rápido. Habla con nosotros.',
     supportSms:'Enviar SMS', supportWa:'WhatsApp',
     footerBrand:'El sistema inteligente para empresas de limpieza',
@@ -1599,6 +1642,11 @@ function setLang(l) {
       ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'fbclid'].forEach(k => {
         if (pageParams.get(k)) url.searchParams.set(k, pageParams.get(k));
       });
+      // Plano do anúncio (?plano=basico) segue pro cadastro -- o app mostra
+      // esse plano primeiro no fim do teste. Botão que já escolhe um plano
+      // (cartões Básico/Profissional) mantém o dele (25/11/2026).
+      const planoAd = pageParams.get('plano');
+      if (['basico', 'profissional', 'standard', 'completo'].includes(planoAd) && !url.searchParams.get('plano')) url.searchParams.set('plano', planoAd);
       a.setAttribute('href', url.toString());
     } catch (_) {}
   });
